@@ -9,7 +9,7 @@ import axios from "axios";
 import { reducerCases } from "../utils/Constants";
 export default function Spotify() {
   const [{ token }, dispatch] = useStateProvider();
-
+  // const [navBackground, setNavBackground] = useState(false);
   useEffect(() => {
     const getUserInfo = async () => {
       const { data } = await axios.get("https://api.spotify.com/v1/me", {
@@ -18,7 +18,6 @@ export default function Spotify() {
           "Content-Type": "application/json",
         },
       });
-      console.log({ data });
       const userInfo = {
         userId: data.id,
         userUrl: data.external_urls.spotify,
