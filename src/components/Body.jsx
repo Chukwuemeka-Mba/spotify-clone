@@ -4,7 +4,7 @@ import { AiFillClockCircle } from "react-icons/ai";
 import { useStateProvider } from "../utils/StateProvider";
 import { reducerCases } from "../utils/Constants";
 import axios from "axios";
-export default function Body() {
+export default function Body({ headerBackground }) {
   const [{ token, selectedPlaylistId, selectedPlaylist }, dispatch] =
     useStateProvider();
   useEffect(() => {
@@ -49,7 +49,7 @@ export default function Body() {
   };
 
   return (
-    <BodyContainer>
+    <BodyContainer headerBackground={headerBackground}>
       {selectedPlaylist && (
         <>
           <div className="playlist">

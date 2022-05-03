@@ -27,7 +27,7 @@ const NavContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  height: 15vh;
+  height: 17vh;
   position: sticky;
   top: 0;
   transition: 0.3s ease-in-out;
