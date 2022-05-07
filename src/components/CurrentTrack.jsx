@@ -16,7 +16,6 @@ export default function CurrentTrack() {
           },
         }
       );
-      console.log(response);
       if (response.data !== "") {
         const { item } = response.data;
         const currentTrack = {
@@ -39,7 +38,7 @@ export default function CurrentTrack() {
           <div className="track __image">
             <img src={currentTrack.image} alt="currentTrack" />
           </div>
-          <div className="">
+          <div className="track_text">
             <h6 className="track__name">{currentTrack.name}</h6>
             <p className="__track__artists">
               {currentTrack.artists.join(", ")}
@@ -63,6 +62,11 @@ const TrackContainer = styled.main`
       flex-direction: column;
       &__track__artists {
         color: #b3b3b3;
+      }
+    }
+    .track_text {
+      h6 {
+        overflow: scroll;
       }
     }
   }
