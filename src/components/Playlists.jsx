@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useStateProvider } from "../utils/StateProvider";
-import axios from "axios";
 import { reducerCases } from "../utils/Constants";
 import styled from "styled-components";
+import axios from "axios";
+
 export default function Playlists() {
   const [{ token, playlists }, dispatch] = useStateProvider();
   useEffect(() => {
@@ -26,8 +27,11 @@ export default function Playlists() {
   }, [token, dispatch]);
 
   const changeCurrentPlaylist = (selectedPlaylistId) => {
-    dispatch({ type: reducerCases.SET_PLAYLIST_ID, selectedPlaylistId });
-    console.log(selectedPlaylistId);
+    dispatch({
+      type: reducerCases.SET_PLAYLIST_ID,
+      selectedPlaylistId: selectedPlaylistId,
+    });
+    return console.log(selectedPlaylistId);
   };
   return (
     <Scrollbar>

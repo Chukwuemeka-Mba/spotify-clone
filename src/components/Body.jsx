@@ -9,7 +9,6 @@ export default function Body({ headerBackground }) {
     useStateProvider();
   useEffect(() => {
     const getInitialPlaylist = async () => {
-      console.log(selectedPlaylistId);
       const response = await axios.get(
         `https://api.spotify.com/v1/playlists/${selectedPlaylistId}`,
         {
@@ -40,7 +39,7 @@ export default function Body({ headerBackground }) {
       dispatch({ type: reducerCases.SET_PLAYLIST, selectedPlaylist });
     };
     getInitialPlaylist();
-  }, [token, dispatch]);
+  }, [token, dispatch, selectedPlaylistId]);
 
   const msToMinutesAndSeconds = (ms) => {
     var minutes = Math.floor(ms / 60000);
@@ -51,7 +50,6 @@ export default function Body({ headerBackground }) {
   const playTrack = async (
     id,
     name,
-    track,
     artists,
     image,
     context_uri,
@@ -83,7 +81,7 @@ export default function Body({ headerBackground }) {
       dispatch({ type: reducerCases.SET_CURRENT_TRACK, currentTrack });
       dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
     } else {
-      dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
+      dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: false });
     }
   };
   return (

@@ -4,9 +4,9 @@ export const initialState = {
   userInfo: null,
   playlists: [],
   selectedPlaylist: null,
-  selectedPlaylistId: "1uesVzO20VhX0ePXiaCKu4",
+  selectedPlaylistId: "1MS2U4I0MYMf6JF2WaINTE",
   currentTrack: null,
-  playerState: false,
+  playerState: true,
 };
 // 2tDNKSrevZC6xKARQp0efQ
 const reducer = (state, action) => {

@@ -73,9 +73,9 @@ export default function PlayerControls() {
       </div>
       <div className="state">
         {playerState ? (
-          <BsFillPauseCircleFill onClick={changeState} />
+          <BsFillPauseCircleFill onClick={() => changeState()} />
         ) : (
-          <BsFillPlayCircleFill onClick={changeState} />
+          <BsFillPlayCircleFill onClick={() => changeState()} />
         )}
       </div>
       <div className="next">
