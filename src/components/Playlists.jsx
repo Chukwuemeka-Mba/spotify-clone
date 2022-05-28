@@ -31,7 +31,6 @@ export default function Playlists() {
       type: reducerCases.SET_PLAYLIST_ID,
       selectedPlaylistId: selectedPlaylistId,
     });
-    return console.log(selectedPlaylistId);
   };
   return (
     <Scrollbar>

@@ -55,12 +55,13 @@ export default function Body({ headerBackground }) {
     context_uri,
     track_number
   ) => {
+    console.log(track_number, context_uri);
     const response = await axios.put(
       `https://api.spotify.com/v1/me/player/play`,
       {
         context_uri,
         offset: {
-          position: track_number - 1,
+          position: 4,
         },
         position_ms: 0,
       },
@@ -81,7 +82,7 @@ export default function Body({ headerBackground }) {
       dispatch({ type: reducerCases.SET_CURRENT_TRACK, currentTrack });
       dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
     } else {
-      dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: false });
+      dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
     }
   };
   return (
