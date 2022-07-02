@@ -50,8 +50,8 @@ export default function Playlists() {
 }
 
 const Scrollbar = styled.div`
-    height: 100%
-    overflow: hidden;
+  height: 100%;
+  overflow: hidden;
   ul {
     height: 45vh;
     max-height: 100%;

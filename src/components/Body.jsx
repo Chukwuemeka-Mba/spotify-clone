@@ -52,6 +52,8 @@ export default function Body({ headerBackground }) {
     name,
     artists,
     image,
+    duration,
+    album,
     context_uri,
     track_number
   ) => {
@@ -61,7 +63,7 @@ export default function Body({ headerBackground }) {
       {
         context_uri,
         offset: {
-          position: 4,
+          position: 0,
         },
         position_ms: 0,
       },
@@ -72,12 +74,17 @@ export default function Body({ headerBackground }) {
         },
       }
     );
+    console.log(token);
     if (response.status === 204) {
       const currentTrack = {
         id,
         name,
         artists,
         image,
+        duration,
+        album,
+        context_uri,
+        track_number,
       };
       dispatch({ type: reducerCases.SET_CURRENT_TRACK, currentTrack });
       dispatch({ type: reducerCases.SET_PLAYER_STATE, playerState: true });
@@ -97,6 +104,9 @@ export default function Body({ headerBackground }) {
               <span className="type">PLAYLIST</span>
               <h1 className="title">{selectedPlaylist.name}</h1>
               <p className="description">{selectedPlaylist.description}</p>
+              <div>
+                <p>{selectedPlaylist.tracks.length + " Tracks"}</p>
+              </div>
             </div>
           </div>
           <div className="list">
@@ -149,17 +159,17 @@ export default function Body({ headerBackground }) {
                       }
                     >
                       <div className="col">
-                        <span>{index + 1}</span>
+                        <span className="num">{index + 1}</span>
                       </div>
                       <div className="col detail">
                         <img src={image} alt="track" />
                         <div className="info">
-                          <span className="name">{name}</span>
-                          <span className="artists">{artists}</span>
+                          <span className="name underline">{name}</span>
+                          <span className="artists underline">{artists}</span>
                         </div>
                       </div>
                       <div className="col">
-                        <span className="album">{album}</span>
+                        <span className="album underline">{album}</span>
                       </div>
                       <div className="col">
                         <span>{msToMinutesAndSeconds(duration)}</span>
@@ -177,92 +187,186 @@ export default function Body({ headerBackground }) {
 }
 
 const BodyContainer = styled.div`
-  .playlist {
-    margin: 0 2rem;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    .image {
-      img {
-        height: 15rem;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-      }
-    }
-    .details {
+  @media screen and (max-width: 800px) {
+    .playlist {
+      padding: 2rem 1rem;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      color: #e0dede;
-      .title {
-        color: white;
-        font-size: 4rem;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+
+      img {
+        height: 35vh;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
       }
-    }
-  }
-  .list {
-    .header__row {
-      display: grid;
-      grid-template-columns: 0.3fr 3fr 2fr 0.5fr;
-      margin: 1rem 0 0 0;
-      color: #dddcdc;
-      position: sticky;
-      top: 15vh;
-      padding: 1rem 3rem;
-      transition: 0.3s ease-in-out;
-      background-color: ${({ headerBackground }) =>
-        headerBackground ? "#000000dc" : "none"};
-    }
-  }
-  .tracks {
-    margin: 0 2rem;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 5rem;
-    .row {
-      padding: 0.5rem 1rem;
-      display: grid;
-      grid-template-columns: 0.3fr 3.1fr 2fr 0.5fr;
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.7);
-      }
-      .col {
+      .details {
         display: flex;
-        align-items: center;
-        color: #dddcdc;
-        img {
-          height: 40px;
-          width: 40px;
-          cursor: pointer;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: left;
+        gap: 1rem;
+        color: #e0dede;
+        width: 100%;
+        .title {
+          color: white;
+          font-size: 4rem;
         }
       }
-      .name {
-        margin-right: 1rem;
+    }
+
+    .list {
+      .header__row {
+        display: grid;
+        grid-template-columns: 0.3fr 3fr 2fr 0.5fr;
+        margin: 1rem 0 0 0;
         color: #dddcdc;
+        position: sticky;
+        top: 15vh;
+        padding: 1rem 3rem;
+        transition: 0.3s ease-in-out;
+        background-color: ${({ headerBackground }) =>
+          headerBackground ? "#000000dc" : "none"};
       }
-      .artists {
-        font-size: 13px;
-        color: #ccdc;
-        margin: 0.2rem 0rem;
-      }
-      .name:hover {
-        text-decoration: underline;
-        cursor: pointer;
-      }
-      .artists:hover {
-        text-decoration: underline;
-        cursor: pointer;
-      }
-      .album:hover {
-        text-decoration: underline;
-        cursor: pointer;
-      }
-      .detail {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        .info {
+    }
+    .tracks {
+      margin: 0rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 5rem;
+      .row {
+        padding: 0.5rem 0rem;
+        display: grid;
+        grid-template-columns: 0.3fr 3.1fr 2fr 0.5fr;
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.7);
+        }
+        .col {
           display: flex;
-          flex-direction: column;
+          align-items: center;
+          color: #dddcdc;
+          img {
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+          }
+          .num {
+            display: none;
+          }
+        }
+        .name {
+          margin-right: 1rem;
+          color: #dddcdc;
+        }
+        .artists {
+          font-size: 13px;
+          color: #ccdc;
+          margin: 0.2rem 0rem;
+        }
+        .underline:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+        .detail {
+          display: flex;
+          flex-direction: row;
+          gap: 1rem;
+          .info {
+            display: flex;
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 800px) {
+    .playlist {
+      margin: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      .image {
+        img {
+          height: 15rem;
+          box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+        }
+      }
+      .details {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        color: #e0dede;
+        .title {
+          color: white;
+          font-size: 4rem;
+        }
+      }
+    }
+    .list {
+      .header__row {
+        display: grid;
+        grid-template-columns: 0.3fr 3fr 2fr 0.5fr;
+        margin: 1rem 0 0 0;
+        color: #dddcdc;
+        position: sticky;
+        top: 15vh;
+        padding: 1rem 3rem;
+        transition: 0.3s ease-in-out;
+        background-color: ${({ headerBackground }) =>
+          headerBackground ? "#000000dc" : "none"};
+      }
+    }
+    .tracks {
+      margin: 0 2rem;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 5rem;
+      .row {
+        padding: 0.5rem 1rem;
+        display: grid;
+        grid-template-columns: 0.3fr 3.1fr 2fr 0.5fr;
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.7);
+        }
+        .col {
+          display: flex;
+          align-items: center;
+          color: #dddcdc;
+          img {
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+          }
+        }
+        .name {
+          margin-right: 1rem;
+          color: #dddcdc;
+        }
+        .artists {
+          font-size: 13px;
+          color: #ccdc;
+          margin: 0.2rem 0rem;
+        }
+        .name:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+        .artists:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+        .album:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+        .detail {
+          display: flex;
+          flex-direction: row;
+          gap: 1rem;
+          .info {
+            display: flex;
+            flex-direction: column;
+          }
         }
       }
     }

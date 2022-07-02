@@ -3,15 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { useStateProvider } from "../utils/StateProvider";
 import { reducerCases } from "../utils/Constants";
-import {
-  Book,
-  Home,
-  Pause,
-  PauseCircle,
-  Play,
-  PlayCircle,
-  Search,
-} from "react-feather";
+import { Book, Home, PauseCircle, PlayCircle, Search } from "react-feather";
 
 function MobileFooter() {
   const [{ token, currentTrack, playerState }, dispatch] = useStateProvider();
