@@ -213,57 +213,56 @@ const BodyContainer = styled.div`
         headerBackground ? "#000000dc" : "none"};
     }
   }
-    .tracks {
-      margin: 0 2rem;
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 5rem;
-      .row {
-        padding: 0.5rem 1rem;
-        display: grid;
-        grid-template-columns: 0.3fr 3.1fr 2fr 0.5fr;
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.7);
+  .tracks {
+    margin: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5rem;
+    .row {
+      padding: 0.5rem 1rem;
+      display: grid;
+      grid-template-columns: 0.3fr 3.1fr 2fr 0.5fr;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+      .col {
+        display: flex;
+        align-items: center;
+        color: #dddcdc;
+        img {
+          height: 40px;
+          width: 40px;
+          cursor: pointer;
         }
-        .col {
+      }
+      .name {
+        margin-right: 1rem;
+        color: #dddcdc;
+      }
+      .artists {
+        font-size: 13px;
+        color: #ccdc;
+        margin: 0.2rem 0rem;
+      }
+      .name:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      .artists:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      .album:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      .detail {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        .info {
           display: flex;
-          align-items: center;
-          color: #dddcdc;
-          img {
-            height: 40px;
-            width: 40px;
-            cursor:pointer;
-          }
-        }
-        .name{
-          margin-right: 1rem;
-          color: #dddcdc;
-        }
-        .artists{
-          font-size: 13px;
-          color: #ccdc;
-          margin: 0.2rem 0rem;
-        }
-        .name:hover{
-          text-decoration: underline;
-          cursor:pointer;
-        }
-        .artists:hover{
-          text-decoration: underline;
-          cursor:pointer;
-        }
-        .album:hover{
-          text-decoration: underline;
-          cursor:pointer;
-        }
-        .detail {
-          display: flex;
-          flex-direction: row;
-          gap: 1rem;
-          .info {
-            display: flex;
-            flex-direction: column;
-          }
+          flex-direction: column;
         }
       }
     }

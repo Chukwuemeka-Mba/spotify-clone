@@ -5,8 +5,10 @@ import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import Body from "./Body";
 import Footer from "./Footer";
+import MobileFooter from "./MobileFooter";
 import axios from "axios";
 import { reducerCases } from "../utils/Constants";
+
 export default function Spotify() {
   const [{ token }, dispatch] = useStateProvider();
   const bodyRef = useRef();
@@ -39,45 +41,68 @@ export default function Spotify() {
   }, [dispatch, token]);
 
   return (
-    <Container>
-      <div className="spotify__body">
-        <Sidebar />
-        <div className="body" ref={bodyRef} onScroll={bodyScrolled}>
-          <Navbar navBackground={navBackground} />
-          <div className="body__contents">
-            <Body headerBackground={headerBackground} />
+    <SpotifyContainer>
+      <div className="mobile">
+        <Body headerBackground={headerBackground} />
+        <MobileFooter />
+      </div>
+      <div className="desktop">
+        <div className="spotify__body">
+          <Sidebar />
+          <div className="body" ref={bodyRef} onScroll={bodyScrolled}>
+            <Navbar navBackground={navBackground} />
+            <div className="body__contents">
+              <Body headerBackground={headerBackground} />
+            </div>
           </div>
         </div>
+        <div className="spotify__footer">
+          <Footer />
+        </div>
       </div>
-      <div className="spotify__footer">
-        <Footer />
-      </div>
-    </Container>
+    </SpotifyContainer>
   );
 }
 
-const Container = styled.div`
-  max-width: 100vw;
-  max-height: 100vh;
-  overflow: hidden;
-  display: grid;
-  grid-template-rows: 85vh 15vh;
-  .spotify__body {
-    display: grid;
-    grid-template-columns: 15vw 85vw;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 1));
-    background-color: rgb(32, 87, 100);
-    .body {
-      height: 100%;
-      width: 100%;
-      overflow: auto;
-      &::-webkit-scrollbar {
-        width: 0.7rem;
-        max-height: 2rem;
-        &-thumb {
-          background-color: rgba(255, 255, 255, 0.6);
+const SpotifyContainer = styled.div`
+  @media screen and (max-width: 800px) {
+    .desktop {
+      display: none;
+    }
+    .mobile {
+      background: linear-gradient(transparent, rgba(0, 0, 0, 1));
+      background-color: rgb(32, 87, 100);
+    }
+  }
+
+  @media screen and (min-width: 800px) {
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      max-width: 100vw;
+      max-height: 100vh;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: 85vh 15vh;
+      .spotify__body {
+        display: grid;
+        grid-template-columns: 15vw 85vw;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 1));
+        background-color: rgb(32, 87, 100);
+        .body {
+          height: 100%;
+          width: 100%;
+          overflow: auto;
+          &::-webkit-scrollbar {
+            width: 0.7rem;
+            max-height: 2rem;
+            &-thumb {
+              background-color: rgba(255, 255, 255, 0.6);
+            }
+          }
         }
       }
     }

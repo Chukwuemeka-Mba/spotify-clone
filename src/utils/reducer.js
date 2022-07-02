@@ -7,6 +7,7 @@ export const initialState = {
   selectedPlaylistId: "1MS2U4I0MYMf6JF2WaINTE",
   currentTrack: null,
   playerState: true,
+  isMobile: false,
 };
 // 2tDNKSrevZC6xKARQp0efQ
 const reducer = (state, action) => {
@@ -51,6 +52,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         selectedPlaylistId: action.selectedPlaylistId,
+      };
+    }
+    case reducerCases.TOGGLE_MOBILE: {
+      return {
+        ...state,
+        isMobile: (state.isMobile = !state.isMobile),
       };
     }
     default:

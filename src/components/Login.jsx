@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function Login() {
   function handleClick() {
     const clientId = "aa7a8c8164934e9b851471ced881c98c";
-    const redirectUrl = "https://emeka-spotify-clone.netlify.app/";
+    const redirectUrl = "http://localhost:3000";
     const apiUrl = "https://accounts.spotify.com/authorize";
     const scope = [
       "user-read-email",
@@ -22,41 +22,95 @@ export default function Login() {
   }
   return (
     <Container>
-      <img
-        src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Black.png"
-        alt="Login Logo"
-      />
-      <button onClick={handleClick}>Connect Spotify</button>
+      <div className="desktop">
+        <img
+          src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Black.png"
+          alt="Login Logo"
+        />
+        <button onClick={handleClick}>Connect Spotify</button>
+      </div>
+      <div className="mobile">
+        <img
+          src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_White.png"
+          alt="Login Logo"
+        />
+        <button onClick={handleClick}>Connect Spotify</button>
+      </div>
     </Container>
   );
 }
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: #1db954;
-  gap: 5rem;
-  img {
-    height: 20vh;
+  @media screen and (max-width: 800px) {
+    .desktop {
+      display: none;
+    }
+    .mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100vw;
+      gap: 5rem;
+      background-color: #000;
+      color: #fff;
+    }
+    img {
+      width: 80%;
+    }
+    button:hover {
+      transform: scale(1.05);
+      border: 1px solid white;
+      background-color: #000;
+      color: white;
+    }
+
+    button {
+      width: 200px;
+      padding: 1rem 0;
+      border-radius: 5rem;
+      border: 0.9px;
+      background-color: white;
+      color: #000;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: transform ease-in-out 200ms;
+    }
   }
-  button {
-    padding: 1rem 5rem;
-    border-radius: 5rem;
-    border: 0.9px;
-    background-color: black;
-    color: #49f585;
-    cusor: pointer;
-    font-size: 1rem;
-    transition: transform ease-in-out 200ms;
-  }
-  button:hover {
-    transform: scale(1.05);
-    background-color: #fff;
-    border: 1px solid black;
-    color: #1db954;
+  @media screen and (min-width: 800px) {
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100vw;
+      background-color: #1db954;
+      gap: 5rem;
+      img {
+        width: 80%;
+      }
+
+      button {
+        width: 200px;
+        padding: 1rem 0;
+        border-radius: 5rem;
+        border: 0.9px;
+        background-color: black;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: transform ease-in-out 200ms;
+      }
+      button:hover {
+        transform: scale(1.05);
+        background-color: #fff;
+        color: #1db954;
+      }
+    }
   }
 `;
