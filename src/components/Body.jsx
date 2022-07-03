@@ -65,7 +65,7 @@ export default function Body({ headerBackground }) {
         offset: {
           position: 0,
         },
-        position_ms: 0,
+        position_ms: 1,
       },
       {
         headers: {

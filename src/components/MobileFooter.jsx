@@ -4,7 +4,7 @@ import axios from "axios";
 import { useStateProvider } from "../utils/StateProvider";
 import { reducerCases } from "../utils/Constants";
 import { Book, Home, PauseCircle, PlayCircle, Search } from "react-feather";
-
+import { Link } from "react-router-dom";
 function MobileFooter() {
   const [{ token, currentTrack, playerState }, dispatch] = useStateProvider();
   useEffect(() => {
@@ -75,9 +75,15 @@ function MobileFooter() {
         </div>
       )}
       <div className="main-footer">
-        <Home />
-        <Search />
-        <Book />
+        <Link to="/home">
+          <Home />
+        </Link>
+        <Link to="/search">
+          <Search />
+        </Link>
+        <Link to="/library">
+          <Book />
+        </Link>
       </div>
     </MobileFooterContainer>
   );
