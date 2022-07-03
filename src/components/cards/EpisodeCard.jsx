@@ -7,10 +7,11 @@ function EpisodeCard() {
     <EpisodeCardContainer>
       <div className="column">
         <img src={skep} alt="" />
-        <h3>Skepta!</h3>
+        <div className="text">
+          <h3>Skepta!</h3>
+          <p>Dive in to the best of the King of Grime</p>
+        </div>
       </div>
-      <PlayCircle size={36} />
-      {/* <PauseCircle /> */}
     </EpisodeCardContainer>
   );
 }
@@ -22,16 +23,29 @@ const EpisodeCardContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   color: white;
-  border: 0.5px solid grey;
   border-radius: 5px;
   margin: 0.5rem;
-  background-color: #b3b1b158;
+  border: 0.5rem solid #202020bc;
+  background-color: #202020bc;
   max-width: 200px;
+  min-width: 200px;
   img {
     width: 100%;
-    border-radius: 5px 5px 0px 0px;
+    height: 200px;
+    border-radius: 11%;
+    padding: 1rem;
   }
   svg {
     margin: 0.5rem;
+  }
+  .text {
+    padding: 1rem;
+    h3 {
+      font-size: 18px;
+    }
+    p {
+      font-size: 12px;
+      padding: 0.5rem 0;
+    }
   }
 `;

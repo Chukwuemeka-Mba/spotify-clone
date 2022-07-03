@@ -19,7 +19,7 @@ function Home() {
             <h1>Episodes for you</h1>
             <p>SEE ALL</p>
           </div>
-          <div className="row">
+          <div className="row cards">
             <EpisodeCard />
             <EpisodeCard />
             <EpisodeCard />
@@ -30,7 +30,7 @@ function Home() {
             <h1>Made for Nero</h1>
             <p>SEE ALL</p>
           </div>
-          <div className="row">
+          <div className="row cards">
             <EpisodeCard />
             <EpisodeCard />
             <EpisodeCard />
@@ -41,7 +41,7 @@ function Home() {
             <h1>Recently Played</h1>
             <p>SEE ALL</p>
           </div>
-          <div className="row">
+          <div className="row cards">
             <EpisodeCard />
             <EpisodeCard />
             <EpisodeCard />
@@ -52,7 +52,10 @@ function Home() {
             <h1>Jump Back In</h1>
             <p>SEE ALL</p>
           </div>
-          <div className="row">
+          <div className="row cards">
+            <EpisodeCard />
+            <EpisodeCard />
+            <EpisodeCard />
             <EpisodeCard />
             <EpisodeCard />
             <EpisodeCard />
@@ -76,6 +79,7 @@ const HomeContainer = styled.div`
       background: linear-gradient(transparent, rgba(0, 0, 0, 1));
       background-color: rgb(32, 47, 90);
       .episodes {
+        padding: 1rem;
         .ep_header {
           display: flex;
           justify-content: space-between;
@@ -88,6 +92,9 @@ const HomeContainer = styled.div`
             font-size: 12px;
             cursor: pointer;
           }
+        }
+        .cards {
+          overflow-x: scroll;
         }
       }
     }
