@@ -25,7 +25,7 @@ function MobileNavbar() {
       <div className="row">
         <Settings onClick={toggleSettings} />
         <div className="avatar">
-          <Link>
+          <Link to="/">
             <CgProfile />
             <p>Nero</p>
           </Link>

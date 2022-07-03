@@ -51,6 +51,7 @@ function MobileFooter() {
       playerState: !playerState,
     });
   };
+  if (currentTrack) document.title = `Spotify - ${currentTrack.name}`;
 
   return (
     <MobileFooterContainer>

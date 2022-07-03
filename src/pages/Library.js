@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { useStateProvider } from "../utils/StateProvider";
-import axios from "axios";
-import { reducerCases } from "../utils/Constants";
+import { useState } from "react";
+// import { useStateProvider } from "../utils/StateProvider";
+// import axios from "axios";
+// import { reducerCases } from "../utils/Constants";
 import styled from "styled-components";
 import { ChevronLeft } from "react-feather";
 import { Link } from "react-router-dom";
@@ -18,9 +18,6 @@ function Library() {
   const changeLibState = (input) => {
     setLibraryState(input);
     console.log(libraryState);
-  };
-  const activeStyle = {
-    backgroundColor: "#777",
   };
   return (
     <HomeContainer>
@@ -144,6 +141,9 @@ const HomeContainer = styled.div`
           }
           .active {
             background-color: #777;
+          }
+          p:hover {
+            background-color: gray;
           }
         }
       }

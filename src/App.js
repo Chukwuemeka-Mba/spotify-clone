@@ -20,6 +20,7 @@ function App() {
       const token = hash.substring(1).split("&")[0].split("=")[1];
       window.localStorage.setItem("spotify-token", token);
       dispatch({ type: reducerCases.SET_TOKEN, token });
+      window.location.hash = "";
     }
     const route = window.location.pathname;
     if (

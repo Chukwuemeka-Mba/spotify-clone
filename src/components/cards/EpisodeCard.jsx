@@ -1,15 +1,18 @@
-import { PauseCircle, PlayCircle } from "react-feather";
+// import { PauseCircle, PlayCircle } from "react-feather";
 import styled from "styled-components";
-import skep from "../../assets/images/skep.jpg";
+// import skep from "../../assets/images/skep.jpg";
 
-function EpisodeCard() {
+function EpisodeCard({ title, image, text }) {
+  let slicedText = { text };
+  let newText = `${slicedText.text}`;
+  let brandNewText = newText.substring(0, 35);
   return (
     <EpisodeCardContainer>
       <div className="column">
-        <img src={skep} alt="" />
+        <img src={image} alt="" />
         <div className="text">
-          <h3>Skepta!</h3>
-          <p>Dive in to the best of the King of Grime</p>
+          <h3>{title}</h3>
+          <p>{brandNewText + "..."}</p>
         </div>
       </div>
     </EpisodeCardContainer>
@@ -30,7 +33,7 @@ const EpisodeCardContainer = styled.div`
   max-width: 200px;
   min-width: 200px;
   img {
-    width: 100%;
+    width: 184px;
     height: 200px;
     border-radius: 11%;
     padding: 1rem;
@@ -40,8 +43,9 @@ const EpisodeCardContainer = styled.div`
   }
   .text {
     padding: 1rem;
+    max-height: 120px;
     h3 {
-      font-size: 18px;
+      font-size: 16px;
     }
     p {
       font-size: 12px;

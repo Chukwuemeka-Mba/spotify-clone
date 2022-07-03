@@ -3,6 +3,7 @@ export const initialState = {
   token: null,
   userInfo: null,
   playlists: [],
+  categories: [],
   selectedPlaylist: null,
   selectedPlaylistId: "2tDNKSrevZC6xKARQp0efQ",
   currentTrack: null,
@@ -30,6 +31,12 @@ const reducer = (state, action) => {
         playlists: action.playlists,
       };
     }
+    case reducerCases.SET_CATEGORIES: {
+      return {
+        ...state,
+        categories: action.categories,
+      };
+    }
     case reducerCases.SET_PLAYLIST: {
       return {
         ...state,
@@ -52,12 +59,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         selectedPlaylistId: action.selectedPlaylistId,
-      };
-    }
-    case reducerCases.TOGGLE_MOBILE: {
-      return {
-        ...state,
-        isMobile: (state.isMobile = !state.isMobile),
       };
     }
     default:

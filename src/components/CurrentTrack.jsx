@@ -31,6 +31,7 @@ export default function CurrentTrack() {
     };
     getCurrentTrack();
   }, [token, dispatch]);
+  if (currentTrack) document.title = `Spotify - ${currentTrack.name}`;
   return (
     <TrackContainer>
       {currentTrack && (

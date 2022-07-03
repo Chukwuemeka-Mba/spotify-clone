@@ -1,9 +1,63 @@
+import { useEffect } from "react";
+import { useStateProvider } from "../utils/StateProvider";
+import { reducerCases } from "../utils/Constants";
 import styled from "styled-components";
+import axios from "axios";
 import HomeCard from "../components/cards/HomeCard";
 import MobileFooter from "../components/MobileFooter";
 import MobileNavbar from "../components/MobileNavbar";
 import EpisodeCard from "../components/cards/EpisodeCard";
+import { Link } from "react-router-dom";
 function Home() {
+  const [{ token, playlists, categories }, dispatch] = useStateProvider();
+  useEffect(() => {
+    const getPlaylistData = async () => {
+      const response = await axios.get(
+        "https://api.spotify.com/v1/browse/featured-playlists",
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const { items } = response.data.playlists;
+      const playlists = items.map(({ name, id, description, images }) => {
+        images = images[0].url;
+        return { name, id, description, images };
+      });
+      dispatch({ type: reducerCases.SET_PLAYLISTS, playlists });
+    };
+    getPlaylistData();
+
+    const getCategories = async () => {
+      const category_id = "party";
+      const response = await axios.get(
+        `https://api.spotify.com/v1/browse/categories/${category_id}/playlists`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const { items } = response.data.playlists;
+      const categories = items.map(({ name, id, description, images }) => {
+        images = images[0].url;
+        return { name, id, description, images };
+      });
+      console.log(categories);
+      dispatch({ type: reducerCases.SET_CATEGORIES, categories });
+    };
+    getCategories();
+  }, [token, dispatch]);
+
+  const changeCurrentPlaylist = (selectedPlaylistId) => {
+    dispatch({
+      type: reducerCases.SET_PLAYLIST_ID,
+      selectedPlaylistId: selectedPlaylistId,
+    });
+  };
   return (
     <HomeContainer>
       <div className="mobile">
@@ -16,13 +70,17 @@ function Home() {
         </div>
         <div className="episodes">
           <div className="row ep_header">
-            <h1>Episodes for you</h1>
+            <h1>Featured Playlists</h1>
             <p>SEE ALL</p>
           </div>
           <div className="row cards">
-            <EpisodeCard />
-            <EpisodeCard />
-            <EpisodeCard />
+            {playlists.map(({ name, id, description, images }) => {
+              return (
+                <Link key={id} to="/" onClick={() => changeCurrentPlaylist(id)}>
+                  <EpisodeCard title={name} image={images} text={description} />
+                </Link>
+              );
+            })}
           </div>
         </div>
         <div className="episodes">
@@ -31,9 +89,13 @@ function Home() {
             <p>SEE ALL</p>
           </div>
           <div className="row cards">
-            <EpisodeCard />
-            <EpisodeCard />
-            <EpisodeCard />
+            {categories.map(({ name, id, description, images }) => {
+              return (
+                <Link key={id} to="/" onClick={() => changeCurrentPlaylist(id)}>
+                  <EpisodeCard title={name} image={images} text={description} />
+                </Link>
+              );
+            })}
           </div>
         </div>
         <div className="episodes">
@@ -42,9 +104,13 @@ function Home() {
             <p>SEE ALL</p>
           </div>
           <div className="row cards">
-            <EpisodeCard />
-            <EpisodeCard />
-            <EpisodeCard />
+            {playlists.map(({ name, id, description, images }) => {
+              return (
+                <Link key={id} to="/" onClick={() => changeCurrentPlaylist(id)}>
+                  <EpisodeCard title={name} image={images} text={description} />
+                </Link>
+              );
+            })}
           </div>
         </div>
         <div className="episodes">
@@ -53,12 +119,13 @@ function Home() {
             <p>SEE ALL</p>
           </div>
           <div className="row cards">
-            <EpisodeCard />
-            <EpisodeCard />
-            <EpisodeCard />
-            <EpisodeCard />
-            <EpisodeCard />
-            <EpisodeCard />
+            {playlists.map(({ name, id, description, images }) => {
+              return (
+                <Link key={id} to="/" onClick={() => changeCurrentPlaylist(id)}>
+                  <EpisodeCard title={name} image={images} text={description} />
+                </Link>
+              );
+            })}
           </div>
         </div>
         <MobileFooter />
@@ -95,6 +162,9 @@ const HomeContainer = styled.div`
         }
         .cards {
           overflow-x: scroll;
+          a {
+            text-decoration: none;
+          }
         }
       }
     }

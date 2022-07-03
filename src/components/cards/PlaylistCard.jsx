@@ -1,4 +1,4 @@
-import { PauseCircle, PlayCircle } from "react-feather";
+import { PlayCircle } from "react-feather";
 import styled from "styled-components";
 import skep from "../../assets/images/skep.jpg";
 
