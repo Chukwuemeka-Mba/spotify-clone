@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Power, Settings, User } from "react-feather";
+import { Power, Settings, User, ChevronLeft } from "react-feather";
 import styled from "styled-components";
+import { CgProfile } from "react-icons/cg";
+import { Link } from "react-router-dom";
 
 function MobileNavbar() {
   const [open, setOpen] = useState(false);
@@ -14,8 +16,21 @@ function MobileNavbar() {
   };
   return (
     <MNavContainer>
-      <h1>Good Morning</h1>
-      <Settings onClick={toggleSettings} />
+      <div className="row">
+        <Link to="/">
+          <ChevronLeft />
+        </Link>
+        <h1>Good Morning</h1>
+      </div>
+      <div className="row">
+        <Settings onClick={toggleSettings} />
+        <div className="avatar">
+          <Link>
+            <CgProfile />
+            <p>Nero</p>
+          </Link>
+        </div>
+      </div>
       {open && (
         <div className="dropdown">
           <p className="space">
@@ -41,6 +56,38 @@ const MNavContainer = styled.div`
   color: white;
   h1 {
     font-size: 24px;
+  }
+  .row {
+    gap: 1rem;
+    align-items: center;
+    a {
+      color: white;
+    }
+    .avatar {
+      background-color: black;
+      padding: 0.5rem 0.9rem;
+      padding-right: 1rem;
+      border-radius: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        svg {
+          font-size: 1.3rem;
+          background-color: #282828;
+          padding: 0.2rem;
+          border-radius: 1rem;
+          color: #c7c5c5;
+        }
+      }
+    }
   }
   .dropdown {
     display: flex;

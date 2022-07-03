@@ -10,7 +10,6 @@ import Library from "./pages/Library";
 import Search from "./pages/Search";
 import Login from "./pages/Login";
 import Spotify from "./components/Spotify";
-// import Body from "./components/Body";
 
 function App() {
   const [{ token }, dispatch] = useStateProvider();
