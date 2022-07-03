@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import MobileFooter from "./MobileFooter";
 import axios from "axios";
 import { reducerCases } from "../utils/Constants";
+import MobileNavbar from "./MobileNavbar";
 
 export default function Spotify() {
   const [{ token }, dispatch] = useStateProvider();
@@ -43,6 +44,7 @@ export default function Spotify() {
   return (
     <SpotifyContainer>
       <div className="mobile">
+        <MobileNavbar />
         <Body headerBackground={headerBackground} />
         <MobileFooter />
       </div>
