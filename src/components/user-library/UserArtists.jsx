@@ -1,28 +1,32 @@
-// import { useEffect } from "react";
-// import { useStateProvider } from "../../utils/StateProvider";
-// import { reducerCases } from "../../utils/Constants";
+import { useStateProvider } from "../../utils/StateProvider";
+import { reducerCases } from "../../utils/Constants";
+import { useEffect } from "react";
 import styled from "styled-components";
-// import axios from "axios";
-
+import { getFollowing } from "../../utils/api-calls";
 // components
-import PlaylistCard from "../cards/PlaylistCard";
+import ArtistCard from "../cards/ArtistCard";
 
-export default function UserPlaylists() {
+export default function UserArtists() {
+  const [{ token, artists }, dispatch] = useStateProvider();
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getFollowing();
+      const { items } = response.data.artists;
+      const artists = items.map(({ name, id, images }) => {
+        images = images[0].url;
+        return { name, id, images };
+      });
+      dispatch({ type: reducerCases.SET_ARTISTS, artists });
+    };
+    fetchData();
+  }, [token, dispatch]);
   return (
     <PlaylistsContainer>
-      <h1>Playlists</h1>
+      <h1>Artists</h1>
       <div className="cards row">
-        <div className="main-card">
-          <div className="card-text">
-            <h1>Liked Songs</h1>
-            <p>0 liked songs</p>
-          </div>
-        </div>
-        <PlaylistCard />
-        <PlaylistCard />
-        <PlaylistCard />
-        <PlaylistCard />
-        <PlaylistCard />
+        {artists.map(({ name, id, images }) => {
+          return <ArtistCard key={id} image={images} name={name} />;
+        })}
       </div>
     </PlaylistsContainer>
   );
@@ -36,6 +40,7 @@ const PlaylistsContainer = styled.div`
     color: white;
   }
   .cards {
+    display: flex;
     flex-wrap: wrap;
     .main-card {
       position: relative;

@@ -12,7 +12,7 @@ function EpisodeCard({ title, image, text }) {
         <img src={image} alt="" />
         <div className="text">
           <h3>{title}</h3>
-          <p>{brandNewText + "..."}</p>
+          <p>{brandNewText !== "undefined" && brandNewText + "..."}</p>
         </div>
       </div>
     </EpisodeCardContainer>

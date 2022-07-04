@@ -3,26 +3,31 @@ import { useStateProvider } from "../../utils/StateProvider";
 import { reducerCases } from "../../utils/Constants";
 import styled from "styled-components";
 import axios from "axios";
-
+import { getRecentlyPlayed } from "../../utils/api-calls";
 // components
 import PlaylistCard from "../cards/PlaylistCard";
+import TrackCard from "../cards/TrackCard";
 
 export default function UserPlaylists() {
+  const [{ token, recentTracks }, dispatch] = useStateProvider();
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getRecentlyPlayed();
+      const { items } = response.data;
+      const recentTracks = items.map(({ track }) => {
+        return { track };
+      });
+      dispatch({ type: reducerCases.SET_RECENT_TRACKS, recentTracks });
+    };
+    fetchData();
+  }, [token, dispatch]);
   return (
     <PlaylistsContainer>
-      <h1>Playlists</h1>
+      <h1>Recently Played</h1>
       <div className="cards row">
-        <div className="main-card">
-          <div className="card-text">
-            <h1>Liked Songs</h1>
-            <p>0 liked songs</p>
-          </div>
-        </div>
-        <PlaylistCard />
-        <PlaylistCard />
-        <PlaylistCard />
-        <PlaylistCard />
-        <PlaylistCard />
+        {recentTracks.map(({ track, index }) => {
+          return <TrackCard key={index} track={track} />;
+        })}
       </div>
     </PlaylistsContainer>
   );
@@ -39,8 +44,8 @@ const PlaylistsContainer = styled.div`
     flex-wrap: wrap;
     .main-card {
       position: relative;
-      height: 300px;
-      width: 400px;
+      height: 260px;
+      width: 350px;
       border-radius: 8px;
       background: #8a299999;
       margin: 0.5rem;

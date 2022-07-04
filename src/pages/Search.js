@@ -16,8 +16,7 @@ import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 
 function Search() {
-  const [{ token, playlists, categories, searchResults }, dispatch] =
-    useStateProvider();
+  const [{ token, searchResults }, dispatch] = useStateProvider();
   const [query, setQuery] = useState("");
   const [type, setType] = useState("album");
   const handleSearch = (e) => {
@@ -51,11 +50,6 @@ function Search() {
       selectedPlaylistId: selectedPlaylistId,
     });
   };
-  const [libraryState, setLibraryState] = useState("playlists");
-  const changeLibState = (input) => {
-    setLibraryState(input);
-    console.log(libraryState);
-  };
   return (
     <HomeContainer>
       <div className="mobile">
@@ -85,7 +79,7 @@ function Search() {
             <div>
               {searchResults.length < 1 && (
                 <EpisodeCard
-                  title="African Beamer"
+                  title=" Today's Top Hits"
                   text="Just dance"
                   image="https://i.scdn.co/image/ab67706f00000003c8113027a8c22805700d65c7"
                 />

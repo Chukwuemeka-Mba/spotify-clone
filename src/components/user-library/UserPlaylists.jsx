@@ -25,7 +25,6 @@ export default function UserPlaylists() {
         images = images[0].url;
         return { name, id, images };
       });
-      console.log(items);
       dispatch({ type: reducerCases.SET_PLAYLISTS, playlists });
     };
     getPlaylistData();
@@ -41,13 +40,6 @@ export default function UserPlaylists() {
     <PlaylistsContainer>
       <h1>Playlists</h1>
       <div className="cards row">
-        <div className="main-card">
-          <div className="card-text">
-            <h1>Liked Songs</h1>
-            <p>0 liked songs</p>
-          </div>
-        </div>
-
         {playlists.map(({ name, id, images }) => {
           return (
             <PlaylistCard
@@ -74,7 +66,7 @@ const PlaylistsContainer = styled.div`
     flex-wrap: wrap;
     .main-card {
       position: relative;
-      height: 300px;
+      height: 270px;
       width: 400px;
       border-radius: 8px;
       background: #8a299999;

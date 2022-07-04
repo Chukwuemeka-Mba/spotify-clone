@@ -12,12 +12,11 @@ import MobileFooter from "../components/MobileFooter";
 import UserPlaylists from "../components/user-library/UserPlaylists";
 import UserPodcasts from "../components/user-library/UserPodcasts";
 import UserArtists from "../components/user-library/UserArtists";
-import UserAlbums from "../components/user-library/UserPodcasts";
+import UserAlbums from "../components/user-library/UserAlbums";
 function Library() {
   const [libraryState, setLibraryState] = useState("playlists");
   const changeLibState = (input) => {
     setLibraryState(input);
-    console.log(libraryState);
   };
   return (
     <HomeContainer>
@@ -29,28 +28,22 @@ function Library() {
             </Link>
             <div className="links">
               <p
-                className={libraryState === "playlists" && "active"}
+                className={libraryState === "playlists" ? "active" : ""}
                 onClick={() => changeLibState("playlists")}
               >
                 Playlists
               </p>
               <p
-                className={libraryState === "podcasts" && "active"}
-                onClick={() => changeLibState("podcasts")}
-              >
-                Podcasts
-              </p>
-              <p
-                className={libraryState === "artists" && "active"}
+                className={libraryState === "artists" ? "active" : ""}
                 onClick={() => changeLibState("artists")}
               >
                 Artists
               </p>
               <p
-                className={libraryState === "albums" && "active"}
+                className={libraryState === "albums" ? "active" : ""}
                 onClick={() => changeLibState("albums")}
               >
-                Albums
+                Recents
               </p>
             </div>
           </div>
@@ -63,7 +56,6 @@ function Library() {
         </div>
         <div className="body">
           {libraryState === "playlists" && <UserPlaylists />}
-          {libraryState === "podcasts" && <UserPodcasts />}
           {libraryState === "artists" && <UserArtists />}
           {libraryState === "albums" && <UserAlbums />}
         </div>
