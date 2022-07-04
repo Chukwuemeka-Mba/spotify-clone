@@ -51,6 +51,11 @@ function Search() {
       selectedPlaylistId: selectedPlaylistId,
     });
   };
+  const [libraryState, setLibraryState] = useState("playlists");
+  const changeLibState = (input) => {
+    setLibraryState(input);
+    console.log(libraryState);
+  };
   return (
     <HomeContainer>
       <div className="mobile">
@@ -74,7 +79,6 @@ function Search() {
             </Link>
           </div>
         </div>
-        <div className="search_results"></div>
         <div className="search_suggestions">
           <div className="recent_searches">
             <h1>Search Results</h1>
@@ -265,6 +269,35 @@ const HomeContainer = styled.div`
               border-radius: 1rem;
               color: #c7c5c5;
             }
+          }
+        }
+      }
+      .search_type {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* position: fixed; */
+        padding-top: 4rem;
+        width: 100%;
+        .links {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          gap: 1rem;
+          width: 80%;
+          p {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 14px;
+            color: white;
+            cursor: pointer;
+          }
+          .active {
+            background-color: #777;
+          }
+          p:hover {
+            background-color: gray;
           }
         }
       }
