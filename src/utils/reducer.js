@@ -4,6 +4,7 @@ export const initialState = {
   userInfo: null,
   playlists: [],
   categories: [],
+  searchResults: [],
   selectedPlaylist: null,
   selectedPlaylistId: "2tDNKSrevZC6xKARQp0efQ",
   currentTrack: null,
@@ -11,6 +12,7 @@ export const initialState = {
   isMobile: false,
 };
 // 2tDNKSrevZC6xKARQp0efQ
+
 const reducer = (state, action) => {
   switch (action.type) {
     case reducerCases.SET_TOKEN: {
@@ -59,6 +61,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         selectedPlaylistId: action.selectedPlaylistId,
+      };
+    }
+    case reducerCases.SET_SEARCH_RESULTS: {
+      return {
+        ...state,
+        searchResults: action.searchResults,
       };
     }
     default:

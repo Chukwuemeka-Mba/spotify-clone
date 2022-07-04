@@ -14,7 +14,7 @@ const SContainer = styled.div`
   background: orange;
   border-radius: 8px;
   max-width: 300px;
-  min-width: 190px;
-  height: 200px;
-  margin: 1rem;
+  min-width: 200px;
+  height: 180px;
+  margin: 0.5rem;
 `;

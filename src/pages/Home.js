@@ -46,7 +46,6 @@ function Home() {
         images = images[0].url;
         return { name, id, description, images };
       });
-      console.log(categories);
       dispatch({ type: reducerCases.SET_CATEGORIES, categories });
     };
     getCategories();

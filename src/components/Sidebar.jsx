@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { IoLibrary } from "react-icons/io5";
 import { MdHomeFilled, MdSearch } from "react-icons/md";
 import Playlists from "./Playlists";
+import { Link } from "react-router-dom";
 export default function Sidebar() {
   return (
     <Container>
@@ -15,19 +16,28 @@ export default function Sidebar() {
         </div>
         <ul>
           <li>
-            <MdHomeFilled />
-            <span>Home</span>
+            <Link to="/home">
+              <MdHomeFilled />
+              <span>Home</span>
+            </Link>
           </li>
           <li>
-            <MdSearch />
-            <span>Search</span>
+            <Link to="/search">
+              <MdSearch />
+              <span>Search</span>
+            </Link>
           </li>
           <li>
-            <IoLibrary />
-            <span>Your Library</span>
+            <Link to="/library">
+              <IoLibrary />
+              Library
+            </Link>
           </li>
         </ul>
         <div className="playlists">
+          <div>
+            <p>PLAYLISTS</p>
+          </div>
           <Playlists />
         </div>
       </div>
@@ -40,6 +50,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   color: #b3b3b3;
+  height: 100%;
   .top__links {
     display: flex;
     flex-direction: column;
@@ -49,7 +60,7 @@ const Container = styled.div`
     margin: 1rem 0;
   }
   img {
-    max-inline-size: 80%;
+    max-inline-size: 150px;
     block-size: auto;
   }
   ul {
@@ -59,19 +70,26 @@ const Container = styled.div`
     gap: 1rem;
     padding: 1rem;
     li {
-      display: flex;
+      a {
+        display: flex;
         gap: 1rem;
         cursor: pointer;
         transition: 0.3s ease-in-out;
+        text-decoration: none;
+        color: #b3b3b3;
         &:hover {
           color: white;
         }
       }
     }
-    .playlists{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+  }
+  .playlists {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    p {
+      padding: 1rem;
+      text-decoration: underline;
     }
   }
 `;
