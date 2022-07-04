@@ -1,13 +1,42 @@
-// import { useEffect } from "react";
-// import { useStateProvider } from "../../utils/StateProvider";
-// import { reducerCases } from "../../utils/Constants";
+import { useEffect } from "react";
+import { useStateProvider } from "../../utils/StateProvider";
+import { reducerCases } from "../../utils/Constants";
 import styled from "styled-components";
-// import axios from "axios";
+import axios from "axios";
 
 // components
 import PlaylistCard from "../cards/PlaylistCard";
 
 export default function UserPlaylists() {
+  const [{ token, playlists }, dispatch] = useStateProvider();
+  useEffect(() => {
+    const getPlaylistData = async () => {
+      const response = await axios.get(
+        "https://api.spotify.com/v1/me/playlists",
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const { items } = response.data;
+      const playlists = items.map(({ name, id, images }) => {
+        images = images[0].url;
+        return { name, id, images };
+      });
+      console.log(items);
+      dispatch({ type: reducerCases.SET_PLAYLISTS, playlists });
+    };
+    getPlaylistData();
+  }, [token, dispatch]);
+
+  const changeCurrentPlaylist = (selectedPlaylistId) => {
+    dispatch({
+      type: reducerCases.SET_PLAYLIST_ID,
+      selectedPlaylistId: selectedPlaylistId,
+    });
+  };
   return (
     <PlaylistsContainer>
       <h1>Playlists</h1>
@@ -18,11 +47,17 @@ export default function UserPlaylists() {
             <p>0 liked songs</p>
           </div>
         </div>
-        <PlaylistCard />
-        <PlaylistCard />
-        <PlaylistCard />
-        <PlaylistCard />
-        <PlaylistCard />
+
+        {playlists.map(({ name, id, images }) => {
+          return (
+            <PlaylistCard
+              key={id}
+              title={name}
+              image={images}
+              onClick={() => changeCurrentPlaylist(id)}
+            />
+          );
+        })}
       </div>
     </PlaylistsContainer>
   );

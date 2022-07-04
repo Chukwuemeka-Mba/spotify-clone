@@ -2,12 +2,12 @@ import { PlayCircle } from "react-feather";
 import styled from "styled-components";
 import skep from "../../assets/images/skep.jpg";
 
-function PlaylistCard() {
+function PlaylistCard({ title, image }) {
   return (
     <PlaylistCardContainer>
       <div className="column">
-        <img src={skep} alt="" />
-        <h3>Skepta!</h3>
+        <img src={image} alt="" />
+        <h3>{title}</h3>
       </div>
       <PlayCircle />
       {/* <PauseCircle /> */}
@@ -28,7 +28,8 @@ const PlaylistCardContainer = styled.div`
   background-color: #b3b1b158;
   max-width: 200px;
   img {
-    width: 100%;
+    width: 200px;
+    height: 200px;
     border-radius: 5px 5px 0px 0px;
   }
   svg {

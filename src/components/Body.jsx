@@ -74,7 +74,6 @@ export default function Body({ headerBackground }) {
         },
       }
     );
-    console.log(token);
     if (response.status === 204) {
       const currentTrack = {
         id,
