@@ -21,6 +21,7 @@ function App() {
       window.localStorage.setItem("spotify-token", token);
       dispatch({ type: reducerCases.SET_TOKEN, token });
       window.location.hash = "";
+      window.location.pathname = "/spotify";
     }
     const route = window.location.pathname;
     if (
