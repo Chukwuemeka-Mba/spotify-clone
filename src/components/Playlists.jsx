@@ -59,5 +59,11 @@ const Scrollbar = styled.div`
     &::webkit-scrollbar {
       width: 0.7rem;
     }
+    li {
+      cursor: pointer;
+    }
+    li:hover {
+      color: white;
+    }
   }
 `;
