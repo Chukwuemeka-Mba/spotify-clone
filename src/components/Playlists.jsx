@@ -3,7 +3,7 @@ import { useStateProvider } from "../utils/StateProvider";
 import { reducerCases } from "../utils/Constants";
 import styled from "styled-components";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 export default function Playlists() {
   const [{ token, playlists }, dispatch] = useStateProvider();
   useEffect(() => {
@@ -38,9 +38,9 @@ export default function Playlists() {
         <ul>
           {playlists.map(({ name, id }) => {
             return (
-              <li key={id} onClick={() => changeCurrentPlaylist(id)}>
+              <Link to="/" key={id} onClick={() => changeCurrentPlaylist(id)}>
                 {name}
-              </li>
+              </Link>
             );
           })}
         </ul>
@@ -59,10 +59,11 @@ const Scrollbar = styled.div`
     &::webkit-scrollbar {
       width: 0.7rem;
     }
-    li {
+    a {
       cursor: pointer;
+      text-decoration: none;
     }
-    li:hover {
+    a:hover {
       color: white;
     }
   }
