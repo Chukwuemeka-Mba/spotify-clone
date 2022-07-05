@@ -161,7 +161,7 @@ function Search() {
             <div className="avatar">
               <Link>
                 <CgProfile />
-                <p>Nero</p>
+                <p>User</p>
               </Link>
             </div>
           </div>
