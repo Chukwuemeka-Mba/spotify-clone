@@ -12,7 +12,7 @@ function MobileNavbar() {
   const logout = () => {
     localStorage.clear();
     window.location.hash = "";
-    window.location.pathname = "/login";
+    window.location.pathname = "/";
   };
   return (
     <MNavContainer>

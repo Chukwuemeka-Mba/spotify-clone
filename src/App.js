@@ -25,7 +25,7 @@ function App() {
     const route = window.location.pathname;
     if (
       route === "/library" ||
-      route === "/" ||
+      route === "/spotify" ||
       route === "/home" ||
       route === "/search"
     ) {
@@ -37,7 +37,7 @@ function App() {
     <div>
       {token ? (
         <Router>
-          <Route exact path="/" component={Spotify} />
+          <Route exact path="/spotify" component={Spotify} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/search" component={Search} />
           <Route exact path="/library" component={Library} />
@@ -45,7 +45,6 @@ function App() {
       ) : (
         <Router>
           <Route exact path="/" component={Login} />
-          <Route exact path="/login" component={Login} />
         </Router>
       )}
     </div>
