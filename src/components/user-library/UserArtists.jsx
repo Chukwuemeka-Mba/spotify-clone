@@ -2,7 +2,7 @@ import { useStateProvider } from "../../utils/StateProvider";
 import { reducerCases } from "../../utils/Constants";
 import { useEffect } from "react";
 import styled from "styled-components";
-import { getFollowing } from "../../utils/api-calls";
+import axios from "axios";
 // components
 import ArtistCard from "../cards/ArtistCard";
 
@@ -10,7 +10,15 @@ export default function UserArtists() {
   const [{ token, artists }, dispatch] = useStateProvider();
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getFollowing();
+      const response = await axios.get(
+        "https://api.spotify.com/v1/me/following?type=artist",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const { items } = response.data.artists;
       const artists = items.map(({ name, id, images }) => {
         images = images[0].url;

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import skep from "../../assets/images/skep.jpg";
 function ArtistCard({ name, image }) {
   return (
     <Aritst>

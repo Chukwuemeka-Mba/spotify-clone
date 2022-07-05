@@ -1,7 +1,4 @@
 import { useState } from "react";
-// import { useStateProvider } from "../utils/StateProvider";
-// import axios from "axios";
-// import { reducerCases } from "../utils/Constants";
 import styled from "styled-components";
 import { ChevronLeft } from "react-feather";
 import { Link } from "react-router-dom";
@@ -10,9 +7,8 @@ import { CgProfile } from "react-icons/cg";
 // comoponents
 import MobileFooter from "../components/MobileFooter";
 import UserPlaylists from "../components/user-library/UserPlaylists";
-import UserPodcasts from "../components/user-library/UserPodcasts";
 import UserArtists from "../components/user-library/UserArtists";
-import UserAlbums from "../components/user-library/UserAlbums";
+import UserRecents from "../components/user-library/UserRecents";
 function Library() {
   const [libraryState, setLibraryState] = useState("playlists");
   const changeLibState = (input) => {
@@ -57,7 +53,7 @@ function Library() {
         <div className="body">
           {libraryState === "playlists" && <UserPlaylists />}
           {libraryState === "artists" && <UserArtists />}
-          {libraryState === "albums" && <UserAlbums />}
+          {libraryState === "albums" && <UserRecents />}
         </div>
         <div>
           <MobileFooter />

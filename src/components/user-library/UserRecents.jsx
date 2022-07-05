@@ -3,29 +3,35 @@ import { useStateProvider } from "../../utils/StateProvider";
 import { reducerCases } from "../../utils/Constants";
 import styled from "styled-components";
 import axios from "axios";
-import { getRecentlyPlayed } from "../../utils/api-calls";
 // components
-import PlaylistCard from "../cards/PlaylistCard";
 import TrackCard from "../cards/TrackCard";
 
-export default function UserPlaylists() {
+export default function UserRecents() {
   const [{ token, recentTracks }, dispatch] = useStateProvider();
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await getRecentlyPlayed();
+    const getUserRecents = async () => {
+      const response = await axios.get(
+        "https://api.spotify.com/v1/me/player/recently-played",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const { items } = response.data;
       const recentTracks = items.map(({ track }) => {
         return { track };
       });
       dispatch({ type: reducerCases.SET_RECENT_TRACKS, recentTracks });
     };
-    fetchData();
+    getUserRecents();
   }, [token, dispatch]);
   return (
     <PlaylistsContainer>
       <h1>Recently Played</h1>
       <div className="cards row">
-        {recentTracks.map(({ track, index }) => {
+        {recentTracks.map(({ track }, index) => {
           return <TrackCard key={index} track={track} />;
         })}
       </div>

@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 export default function Login() {
+  // website: https://emeka-spotify-clone.netlify.app/
   function handleClick() {
     const clientId = "aa7a8c8164934e9b851471ced881c98c";
-    const redirectUrl = "https://emeka-spotify-clone.netlify.app/";
+    const redirectUrl = "http://localhost:3000/";
     const apiUrl = "https://accounts.spotify.com/authorize";
     const scope = [
       "user-read-email",
