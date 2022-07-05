@@ -151,7 +151,12 @@ function Search() {
             </Link>
             <div className="search-input">
               <FaSearch />
-              <input type="search" placeholder="Artists, songs or podcasts" />
+              <input
+                type="search"
+                placeholder="Artists, songs or podcasts"
+                name="search"
+                onChange={handleSearch}
+              />
             </div>
             <div className="avatar">
               <Link>
@@ -163,38 +168,66 @@ function Search() {
           <div className="search_results"></div>
           <div className="search_suggestions">
             <div className="recent_searches">
-              <h1>Recent Searches</h1>
+              <h1>Search Results</h1>
               <div>
-                <EpisodeCard />
+                {searchResults.length < 1 && (
+                  <EpisodeCard
+                    title=" Today's Top Hits"
+                    text="Just dance"
+                    image="https://i.scdn.co/image/ab67706f00000003c8113027a8c22805700d65c7"
+                  />
+                )}
               </div>
             </div>
-            <div className="top_genres">
-              <h1>Your top genres</h1>
-              <div className="cards row">
-                <SuggestionCard />
-                <SuggestionCard />
-                <SuggestionCard />
-                <SuggestionCard />
+            {searchResults.length < 1 && (
+              <div>
+                <div className="top_genres">
+                  <h1>Your top genres</h1>
+                  <div className="cards row">
+                    <SuggestionCard />
+                    <SuggestionCard />
+                    <SuggestionCard />
+                    <SuggestionCard />
+                  </div>
+                </div>
+                <div className="browse_all">
+                  <h1>Browse All Categories</h1>
+                  <div className="cards row">
+                    <SuggestionCard />
+                    <SuggestionCard />
+                    <SuggestionCard />
+                    <SuggestionCard />
+                    <SuggestionCard />
+                    <SuggestionCard />
+                    <SuggestionCard />
+                    <SuggestionCard />
+                    <SuggestionCard />
+                    <SuggestionCard />
+                    <SuggestionCard />
+                    <SuggestionCard />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="browse_all">
-              <h1>Browse All Categories</h1>
-              <div className="cards row">
-                <SuggestionCard />
-                <SuggestionCard />
-                <SuggestionCard />
-                <SuggestionCard />
-                <SuggestionCard />
-                <SuggestionCard />
-                <SuggestionCard />
-                <SuggestionCard />
-                <SuggestionCard />
-                <SuggestionCard />
-                <SuggestionCard />
-                <SuggestionCard />
+            )}
+            {searchResults.length > 0 && (
+              <div className="search_results">
+                {searchResults.map(({ name, id, description, images }) => {
+                  return (
+                    <Link
+                      key={id}
+                      to="/"
+                      onClick={() => changeCurrentPlaylist(id)}
+                    >
+                      <EpisodeCard
+                        title={name}
+                        image={images}
+                        text={description}
+                      />
+                    </Link>
+                  );
+                })}
               </div>
-            </div>
-            <div></div>
+            )}
           </div>
         </div>
         <div className="footer">
@@ -443,7 +476,16 @@ const HomeContainer = styled.div`
             }
           }
         }
+
+        .search_results {
+          display: flex;
+          flex-wrap: wrap;
+          a {
+            text-decoration: none;
+          }
+        }
       }
+
       .footer {
         grid-area: foot;
       }

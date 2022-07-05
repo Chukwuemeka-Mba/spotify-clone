@@ -49,16 +49,18 @@ export default function Spotify() {
         <MobileFooter />
       </div>
       <div className="desktop">
-        <div className="spotify__body">
+        <div className="sidebar">
           <Sidebar />
-          <div className="body" ref={bodyRef} onScroll={bodyScrolled}>
+        </div>
+        <div className="body">
+          <div className="body_cont" ref={bodyRef} onScroll={bodyScrolled}>
             <Navbar navBackground={navBackground} />
             <div className="body__contents">
               <Body headerBackground={headerBackground} />
             </div>
           </div>
         </div>
-        <div className="spotify__footer">
+        <div className="footer">
           <Footer />
         </div>
       </div>
@@ -82,11 +84,61 @@ const SpotifyContainer = styled.div`
       display: none;
     }
     .desktop {
-      max-width: 100vw;
-      max-height: 100vh;
-      overflow: hidden;
       display: grid;
-      grid-template-rows: 85vh 15vh;
+      grid-template-columns: 15% 85%;
+      grid-template-rows: 75% 25%;
+      grid-template-areas:
+        "side body"
+        "foot foot";
+      .sidebar {
+        grid-area: side;
+      }
+      .body {
+        grid-area: body;
+        height: 92vh;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 1));
+        background-color: rgb(32, 87, 100);
+        .body_cont {
+          height: 100%;
+          width: 100%;
+          overflow: auto;
+          &::-webkit-scrollbar {
+            width: 0.7rem;
+            max-height: 2rem;
+            &-thumb {
+              background-color: rgba(255, 255, 255, 0.6);
+            }
+          }
+        }
+
+        .body__contents {
+          .episodes {
+            padding: 1rem;
+            .ep_header {
+              display: flex;
+              justify-content: space-between;
+              padding: 1rem;
+              color: #ccc;
+              h1 {
+                font-size: 23px;
+              }
+              p {
+                font-size: 12px;
+                cursor: pointer;
+              }
+            }
+            .cards {
+              overflow-x: scroll;
+              a {
+                text-decoration: none;
+              }
+            }
+          }
+        }
+      }
+      .footer {
+        grid-area: foot;
+      }
       .spotify__body {
         display: grid;
         grid-template-columns: 15vw 85vw;

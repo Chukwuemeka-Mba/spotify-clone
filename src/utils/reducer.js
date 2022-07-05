@@ -3,6 +3,8 @@ export const initialState = {
   token: null,
   userInfo: null,
   playlists: [],
+  playlists2: [],
+  playlists3: [],
   categories: [],
   searchResults: [],
   artists: [],
@@ -33,6 +35,18 @@ const reducer = (state, action) => {
       return {
         ...state,
         playlists: action.playlists,
+      };
+    }
+    case reducerCases.SET_PLAYLISTS2: {
+      return {
+        ...state,
+        playlists2: action.playlists2,
+      };
+    }
+    case reducerCases.SET_PLAYLISTS3: {
+      return {
+        ...state,
+        playlists3: action.playlists3,
       };
     }
     case reducerCases.SET_CATEGORIES: {
