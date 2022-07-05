@@ -21,12 +21,11 @@ function App() {
       window.localStorage.setItem("spotify-token", token);
       dispatch({ type: reducerCases.SET_TOKEN, token });
       window.location.hash = "";
-      window.location.pathname = "/spotify";
     }
     const route = window.location.pathname;
     if (
       route === "/library" ||
-      route === "/spotify" ||
+      route === "/" ||
       route === "/home" ||
       route === "/search"
     ) {
@@ -36,9 +35,9 @@ function App() {
   }, [token, dispatch]);
   return (
     <div>
-      {token ? (
+      {token !== "undefined" && token !== null ? (
         <Router>
-          <Route exact path="/spotify" component={Spotify} />
+          <Route exact path="/" component={Spotify} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/search" component={Search} />
           <Route exact path="/library" component={Library} />
