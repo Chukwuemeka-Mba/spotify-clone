@@ -100,7 +100,7 @@ const Container = styled.div`
       background-color: #1db954;
       gap: 5rem;
       img {
-        width: 80%;
+        width: 30%;
       }
 
       button {

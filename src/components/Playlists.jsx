@@ -62,6 +62,7 @@ const Scrollbar = styled.div`
     a {
       cursor: pointer;
       text-decoration: none;
+      color: #777;
     }
     a:hover {
       color: white;

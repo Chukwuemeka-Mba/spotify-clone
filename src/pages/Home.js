@@ -17,14 +17,10 @@ function Home() {
   const [{ token, playlists2, categories }, dispatch] = useStateProvider();
   const bodyRef = useRef();
   const [navBackground, setNavBackground] = useState(false);
-  const [headerBackground, setHeaderBackground] = useState(false);
   const bodyScrolled = () => {
     bodyRef.current.scrollTop >= 30
       ? setNavBackground(true)
       : setNavBackground(false);
-    bodyRef.current.scrollTop >= 268
-      ? setHeaderBackground(true)
-      : setHeaderBackground(false);
   };
   useEffect(() => {
     const getPlaylistData = async () => {

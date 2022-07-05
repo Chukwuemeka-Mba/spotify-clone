@@ -10,7 +10,6 @@ import UserPlaylists from "../components/user-library/UserPlaylists";
 import UserArtists from "../components/user-library/UserArtists";
 import UserRecents from "../components/user-library/UserRecents";
 import Sidebar from "../components/Sidebar";
-import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 function Library() {
   const [libraryState, setLibraryState] = useState("playlists");

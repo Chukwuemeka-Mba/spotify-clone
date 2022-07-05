@@ -18,7 +18,6 @@ import Sidebar from "../components/Sidebar";
 function Search() {
   const [{ token, searchResults }, dispatch] = useStateProvider();
   const [query, setQuery] = useState("");
-  const [type, setType] = useState("album");
   const handleSearch = (e) => {
     e.preventDefault();
     setQuery(e.target.value);
@@ -28,7 +27,7 @@ function Search() {
 
   const getSearchResult = async () => {
     const response = await axios.get(
-      `https://api.spotify.com/v1/search?type=${type}&q=${query}`,
+      `https://api.spotify.com/v1/search?type=album&q=${query}`,
       {
         headers: {
           Authorization: "Bearer " + token,
