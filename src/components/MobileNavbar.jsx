@@ -19,7 +19,7 @@ function MobileNavbar() {
   return (
     <MNavContainer>
       <div className="row">
-        <h1>Good Morning {userInfo?.name} .</h1>
+        <h1>Good Morning</h1>
       </div>
       <div className="row">
         <Settings onClick={toggleSettings} />
