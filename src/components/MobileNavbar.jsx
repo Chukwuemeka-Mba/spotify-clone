@@ -3,8 +3,9 @@ import { Power, Settings, User } from "react-feather";
 import styled from "styled-components";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
-
+import { useStateProvider } from "../utils/StateProvider";
 function MobileNavbar() {
+  const [{ userInfo }] = useStateProvider();
   const [open, setOpen] = useState(false);
   const toggleSettings = () => {
     setOpen((prevState) => !prevState);
@@ -18,14 +19,14 @@ function MobileNavbar() {
   return (
     <MNavContainer>
       <div className="row">
-        <h1>Good Morning</h1>
+        <h1>Good Morning {userInfo.name}</h1>
       </div>
       <div className="row">
         <Settings onClick={toggleSettings} />
         <div className="avatar">
-          <Link to="/">
+          <Link to={userInfo?.userUr}>
             <CgProfile />
-            <p>Nero</p>
+            <p>{userInfo.name}</p>
           </Link>
         </div>
       </div>

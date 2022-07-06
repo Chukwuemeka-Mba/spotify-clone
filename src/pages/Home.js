@@ -14,6 +14,7 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 function Home() {
+  const [{ userInfo }] = useStateProvider();
   const [{ token, playlists2, categories }, dispatch] = useStateProvider();
   const bodyRef = useRef();
   const [navBackground, setNavBackground] = useState(false);
@@ -98,7 +99,7 @@ function Home() {
         </div>
         <div className="episodes">
           <div className="row ep_header">
-            <h1>Made for Nero</h1>
+            <h1>Made for {userInfo.name}</h1>
             <p>SEE ALL</p>
           </div>
           <div className="row cards">
@@ -180,7 +181,7 @@ function Home() {
               </div>
               <div className="episodes">
                 <div className="row ep_header">
-                  <h1>Made for Nero</h1>
+                  <h1>Made for {userInfo.name}</h1>
                   <p>SEE ALL</p>
                 </div>
                 <div className="row cards">
