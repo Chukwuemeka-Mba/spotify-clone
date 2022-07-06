@@ -4,7 +4,7 @@ import { reducerCases } from "../utils/Constants";
 import styled from "styled-components";
 import axios from "axios";
 // components
-import TrackCard from "./cards/TrackCard";
+import TopTrack from "./cards/TopTrack";
 
 function TopTracks() {
   const [{ token, topTracks }, dispatch] = useStateProvider();
@@ -35,13 +35,13 @@ function TopTracks() {
         {topTracks.length > 0 &&
           topTracks.map(({ album, name, id, image }) => {
             return (
-              <div key={id} className="track">
-                <img src={image} alt="" />
-                <div className="track_text">
-                  <h4>{album}</h4>
-                  <p>{name}</p>
-                </div>
-              </div>
+              <TopTrack
+                key={id}
+                id={id}
+                image={image}
+                album={album}
+                name={name}
+              />
             );
           })}
       </div>

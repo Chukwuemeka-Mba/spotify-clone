@@ -1,9 +1,4 @@
-import { useEffect } from "react";
-import { useStateProvider } from "../utils/StateProvider";
-import { reducerCases } from "../utils/Constants";
 import styled from "styled-components";
-import axios from "axios";
-import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import TopTracks from "../components/TopTracks";
 // Components
@@ -75,6 +70,7 @@ const ShazamContainer = styled.div`
         h1 {
           font-size: 24px;
           letter-spacing: 1px;
+          text-align: center;
         }
         .text {
           display: flex;
@@ -135,6 +131,7 @@ const ShazamContainer = styled.div`
           h1 {
             font-size: 24px;
             letter-spacing: 1px;
+            text-align: center;
           }
           .text {
             display: flex;

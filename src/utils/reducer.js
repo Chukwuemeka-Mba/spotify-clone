@@ -10,6 +10,7 @@ export const initialState = {
   artists: [],
   recentTracks: [],
   topTracks: [],
+  audioFeatures: [],
   selectedPlaylist: null,
   selectedPlaylistId: "2tDNKSrevZC6xKARQp0efQ",
   currentTrack: null,
@@ -72,6 +73,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         topTracks: action.topTracks,
+      };
+    }
+    case reducerCases.SET_AUDIO_FEATURES: {
+      return {
+        ...state,
+        audioFeatures: action.audioFeatures,
       };
     }
     case reducerCases.SET_PLAYLIST: {

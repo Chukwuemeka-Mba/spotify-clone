@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Power, Settings, User, ChevronLeft } from "react-feather";
+import { Power, Settings, User } from "react-feather";
 import styled from "styled-components";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";

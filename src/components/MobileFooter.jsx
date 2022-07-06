@@ -5,11 +5,11 @@ import { useStateProvider } from "../utils/StateProvider";
 import { reducerCases } from "../utils/Constants";
 import {
   Book,
-  Sliders,
   Home,
   PauseCircle,
   PlayCircle,
   Search,
+  Dribbble,
 } from "react-feather";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
@@ -95,7 +95,7 @@ function MobileFooter() {
             <Book />
           </Link>
           <Link to="/shazam">
-            <Sliders />
+            <Dribbble />
           </Link>
         </Fade>
       </div>
