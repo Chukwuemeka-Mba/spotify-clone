@@ -13,6 +13,7 @@ function MobileNavbar() {
     localStorage.clear();
     window.location.hash = "";
     window.location.pathname = "/";
+    window.location.reload();
   };
   return (
     <MNavContainer>

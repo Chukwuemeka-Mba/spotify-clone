@@ -14,7 +14,8 @@ export default function Navbar({ navBackground }) {
   const logout = () => {
     localStorage.clear();
     window.location.hash = "";
-    window.location.pathname = "/login";
+    window.location.pathname = "/";
+    window.location.reload();
   };
   return (
     <NavContainer navBackground={navBackground}>
