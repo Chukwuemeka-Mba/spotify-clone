@@ -19,14 +19,14 @@ function MobileNavbar() {
   return (
     <MNavContainer>
       <div className="row">
-        <h1>Good Morning {userInfo.name}</h1>
+        <h1>Good Morning {userInfo?.name}</h1>
       </div>
       <div className="row">
         <Settings onClick={toggleSettings} />
         <div className="avatar">
           <Link to={userInfo?.userUr}>
             <CgProfile />
-            <p>{userInfo.name}</p>
+            <p>{userInfo?.name}</p>
           </Link>
         </div>
       </div>

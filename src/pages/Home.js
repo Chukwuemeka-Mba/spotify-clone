@@ -99,7 +99,7 @@ function Home() {
         </div>
         <div className="episodes">
           <div className="row ep_header">
-            <h1>Made for {userInfo.name}</h1>
+            <h1>Made for {userInfo?.name}</h1>
             <p>SEE ALL</p>
           </div>
           <div className="row cards">
@@ -181,7 +181,7 @@ function Home() {
               </div>
               <div className="episodes">
                 <div className="row ep_header">
-                  <h1>Made for {userInfo.name}</h1>
+                  <h1>Made for {userInfo?.name}</h1>
                   <p>SEE ALL</p>
                 </div>
                 <div className="row cards">
