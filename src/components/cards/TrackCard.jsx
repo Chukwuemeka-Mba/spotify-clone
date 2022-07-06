@@ -8,8 +8,8 @@ function TrackCard({ track }) {
         )}
       </div>
       <TrackText>
-        <h2>{track.album.name}</h2>
         <p>{track.name}</p>
+        <h2>{track.album.name}</h2>
       </TrackText>
       <p>
         {/* {track.duration_ms && (

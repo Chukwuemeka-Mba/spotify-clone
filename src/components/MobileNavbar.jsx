@@ -17,7 +17,7 @@ function MobileNavbar() {
   return (
     <MNavContainer>
       <div className="row">
-        <Link to="/">
+        <Link to="/home">
           <ChevronLeft />
         </Link>
         <h1>Good Morning</h1>
