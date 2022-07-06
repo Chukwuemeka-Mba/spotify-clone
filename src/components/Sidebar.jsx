@@ -4,6 +4,7 @@ import { IoLibrary } from "react-icons/io5";
 import { MdHomeFilled, MdSearch } from "react-icons/md";
 import Playlists from "./Playlists";
 import { Link } from "react-router-dom";
+import { Dribbble } from "react-feather";
 export default function Sidebar() {
   return (
     <Container>
@@ -31,6 +32,12 @@ export default function Sidebar() {
             <Link to="/library">
               <IoLibrary />
               Library
+            </Link>
+          </li>
+          <li>
+            <Link to="/shazam">
+              <Dribbble />
+              Shazam
             </Link>
           </li>
         </ul>
@@ -80,6 +87,9 @@ const Container = styled.div`
         &:hover {
           color: white;
         }
+        svg {
+          font-size: 20px;
+        }
       }
     }
   }
@@ -90,6 +100,27 @@ const Container = styled.div`
     p {
       padding: 1rem;
       text-decoration: underline;
+    }
+  }
+
+  .logo {
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-name: bounce-1;
+    animation-timing-function: linear;
+  }
+  @keyframes bounce-1 {
+    0% {
+      transform: translateY(0);
+    }
+    45% {
+      transform: translateY(-6px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+    100% {
+      transform: translateY(0);
     }
   }
 `;

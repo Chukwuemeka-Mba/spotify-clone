@@ -4,6 +4,7 @@ import { AiFillClockCircle } from "react-icons/ai";
 import { useStateProvider } from "../utils/StateProvider";
 import { reducerCases } from "../utils/Constants";
 import axios from "axios";
+import Fade from "react-reveal/Fade";
 export default function Body({ headerBackground }) {
   const [{ token, selectedPlaylistId, selectedPlaylist }, dispatch] =
     useStateProvider();
@@ -95,19 +96,21 @@ export default function Body({ headerBackground }) {
     <BodyContainer headerBackground={headerBackground}>
       {selectedPlaylist && (
         <>
-          <div className="playlist">
-            <div className="image">
-              <img src={selectedPlaylist.image} alt="selectedPlaylist" />
-            </div>
-            <div className="details">
-              <span className="type">PLAYLIST</span>
-              <h1 className="title">{selectedPlaylist.name}</h1>
-              <p className="description">{selectedPlaylist.description}</p>
-              <div>
-                <p>{selectedPlaylist.tracks.length + " Tracks"}</p>
+          <Fade left>
+            <div className="playlist">
+              <div className="image">
+                <img src={selectedPlaylist.image} alt="selectedPlaylist" />
+              </div>
+              <div className="details">
+                <span className="type">PLAYLIST</span>
+                <h1 className="title">{selectedPlaylist.name}</h1>
+                <p className="description">{selectedPlaylist.description}</p>
+                <div>
+                  <p>{selectedPlaylist.tracks.length + " Tracks"}</p>
+                </div>
               </div>
             </div>
-          </div>
+          </Fade>
           <div className="list">
             <div className="header__row">
               <div className="col">

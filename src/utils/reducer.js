@@ -9,6 +9,7 @@ export const initialState = {
   searchResults: [],
   artists: [],
   recentTracks: [],
+  topTracks: [],
   selectedPlaylist: null,
   selectedPlaylistId: "2tDNKSrevZC6xKARQp0efQ",
   currentTrack: null,
@@ -65,6 +66,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         recentTracks: action.recentTracks,
+      };
+    }
+    case reducerCases.SET_TOP_TRACKS: {
+      return {
+        ...state,
+        topTracks: action.topTracks,
       };
     }
     case reducerCases.SET_PLAYLIST: {

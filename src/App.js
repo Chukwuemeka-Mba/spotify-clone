@@ -10,6 +10,7 @@ import Library from "./pages/Library";
 import Search from "./pages/Search";
 import Login from "./pages/Login";
 import Spotify from "./components/Spotify";
+import Shazam from "./pages/Shazam";
 
 function App() {
   const [{ token }, dispatch] = useStateProvider();
@@ -27,7 +28,8 @@ function App() {
       route === "/library" ||
       route === "/" ||
       route === "/home" ||
-      route === "/search"
+      route === "/search" ||
+      route === "/shazam"
     ) {
       const token = localStorage.getItem("spotify-token");
       dispatch({ type: reducerCases.SET_TOKEN, token });
@@ -41,6 +43,7 @@ function App() {
           <Route exact path="/home" component={Home} />
           <Route exact path="/search" component={Search} />
           <Route exact path="/library" component={Library} />
+          <Route exact path="/shazam" component={Shazam} />
         </Router>
       ) : (
         <Router>

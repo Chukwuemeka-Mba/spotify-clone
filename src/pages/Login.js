@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-
+import Fade from "react-reveal/Fade";
 export default function Login() {
   // website: https://emeka-spotify-clone.netlify.app/
   function handleClick() {
     const clientId = "aa7a8c8164934e9b851471ced881c98c";
-    const redirectUrl = "https://emeka-spotify-clone.netlify.app/";
+    const redirectUrl = "http://localhost:3000/";
     const apiUrl = "https://accounts.spotify.com/authorize";
     const scope = [
       "user-read-email",
@@ -31,18 +31,26 @@ export default function Login() {
   return (
     <Container>
       <div className="desktop">
-        <img
-          src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Black.png"
-          alt="Login Logo"
-        />
-        <button onClick={handleClick}>Connect Spotify</button>
+        <Fade top>
+          <img
+            src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Black.png"
+            alt="Login Logo"
+          />
+        </Fade>
+        <Fade bottom>
+          <button onClick={handleClick}>Connect Spotify</button>
+        </Fade>
       </div>
       <div className="mobile">
-        <img
-          src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_White.png"
-          alt="Login Logo"
-        />
-        <button onClick={handleClick}>Connect Spotify</button>
+        <Fade top>
+          <img
+            src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_White.png"
+            alt="Login Logo"
+          />
+        </Fade>
+        <Fade bottom>
+          <button onClick={handleClick}>Connect Spotify</button>
+        </Fade>
       </div>
     </Container>
   );

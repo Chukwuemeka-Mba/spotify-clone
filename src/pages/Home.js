@@ -4,11 +4,11 @@ import { reducerCases } from "../utils/Constants";
 import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { ChevronLeft } from "react-feather";
 
 // Components
 import HomeCard from "../components/cards/HomeCard";
 import MobileFooter from "../components/MobileFooter";
-import MobileNavbar from "../components/MobileNavbar";
 import EpisodeCard from "../components/cards/EpisodeCard";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
@@ -72,7 +72,11 @@ function Home() {
   return (
     <HomeContainer>
       <div className="mobile">
-        <MobileNavbar />
+        <div className="nav">
+          <Link to="/">
+            <ChevronLeft />
+          </Link>
+        </div>
         <div>
           <HomeCard />
           <HomeCard />
@@ -264,6 +268,12 @@ const HomeContainer = styled.div`
       height: 100%;
       background: linear-gradient(transparent, rgba(0, 0, 0, 1));
       background-color: rgb(32, 47, 90);
+      .nav {
+        padding: 1rem;
+        svg {
+          color: white;
+        }
+      }
       .episodes {
         padding: 1rem;
         .ep_header {

@@ -12,15 +12,12 @@ function MobileNavbar() {
   const logout = () => {
     localStorage.clear();
     window.location.hash = "";
-    window.location.pathname = "/";
+    window.location.href = "/";
     window.location.reload();
   };
   return (
     <MNavContainer>
       <div className="row">
-        <Link to="/home">
-          <ChevronLeft />
-        </Link>
         <h1>Good Morning</h1>
       </div>
       <div className="row">
@@ -94,6 +91,7 @@ const MNavContainer = styled.div`
     display: flex;
     flex-direction: column;
     position: absolute;
+    z-index: 1;
     top: 70px;
     right: 1rem;
     gap: 5px;

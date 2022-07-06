@@ -3,7 +3,7 @@ import { useStateProvider } from "../../utils/StateProvider";
 import { reducerCases } from "../../utils/Constants";
 import styled from "styled-components";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 // components
 import PlaylistCard from "../cards/PlaylistCard";
 
@@ -42,12 +42,9 @@ export default function UserPlaylists() {
       <div className="cards row">
         {playlists.map(({ name, id, images }) => {
           return (
-            <PlaylistCard
-              key={id}
-              title={name}
-              image={images}
-              onClick={() => changeCurrentPlaylist(id)}
-            />
+            <Link to="/" onClick={() => changeCurrentPlaylist(id)}>
+              <PlaylistCard key={id} title={name} image={images} />
+            </Link>
           );
         })}
       </div>
@@ -64,21 +61,8 @@ const PlaylistsContainer = styled.div`
   }
   .cards {
     flex-wrap: wrap;
-    .main-card {
-      position: relative;
-      height: 270px;
-      width: 400px;
-      border-radius: 8px;
-      background: #8a299999;
-      margin: 0.5rem;
-      .card-text {
-        position: absolute;
-        bottom: 0px;
-        padding: 1rem;
-        p {
-          font-weight: 500;
-        }
-      }
+    a {
+      text-decoration: none;
     }
   }
 `;

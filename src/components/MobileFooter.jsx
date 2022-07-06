@@ -3,7 +3,15 @@ import styled from "styled-components";
 import axios from "axios";
 import { useStateProvider } from "../utils/StateProvider";
 import { reducerCases } from "../utils/Constants";
-import { Book, Home, PauseCircle, PlayCircle, Search } from "react-feather";
+import {
+  Book,
+  Sliders,
+  Home,
+  PauseCircle,
+  PlayCircle,
+  Search,
+} from "react-feather";
+import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 function MobileFooter() {
   const [{ token, currentTrack, playerState }, dispatch] = useStateProvider();
@@ -76,15 +84,20 @@ function MobileFooter() {
         </div>
       )}
       <div className="main-footer">
-        <Link to="/home">
-          <Home />
-        </Link>
-        <Link to="/search">
-          <Search />
-        </Link>
-        <Link to="/library">
-          <Book />
-        </Link>
+        <Fade left>
+          <Link to="/home">
+            <Home />
+          </Link>
+          <Link to="/search">
+            <Search />
+          </Link>
+          <Link to="/library">
+            <Book />
+          </Link>
+          <Link to="/shazam">
+            <Sliders />
+          </Link>
+        </Fade>
       </div>
     </MobileFooterContainer>
   );
