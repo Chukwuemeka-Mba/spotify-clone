@@ -45,12 +45,6 @@ function Library() {
               </p>
             </div>
           </div>
-          <div className="avatar">
-            <Link to="/home">
-              <CgProfile />
-              <p>Nero</p>
-            </Link>
-          </div>
         </div>
         <div className="body">
           {libraryState === "playlists" && <UserPlaylists />}
@@ -93,9 +87,8 @@ function Library() {
               </div>
             </div>
             <div className="avatar">
-              <Link to="/home">
+              <Link to="/">
                 <CgProfile />
-                <p>Nero</p>
               </Link>
             </div>
           </div>
@@ -133,6 +126,7 @@ const HomeContainer = styled.div`
           display: flex;
           flex-direction: row;
           align-items: center;
+          overflow-x: scroll;
           a {
             color: #fff;
             margin-right: 1rem;
@@ -168,6 +162,7 @@ const HomeContainer = styled.div`
           flex-direction: row;
           justify-content: space-around;
           gap: 1rem;
+          overflow: hidden;
           p {
             padding: 0.5rem 1rem;
             border-radius: 5px;

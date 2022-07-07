@@ -1,8 +1,8 @@
 import styled from "styled-components";
+import Fade from "react-reveal/Fade";
 // import { useEffect } from "react";
 // import { useStateProvider } from "../../utils/StateProvider";
 // import { reducerCases } from "../../utils/Constants";
-import Fade from "react-reveal/Fade";
 // import axios from "axios";
 
 function TopTrack({ album, name, id, image }) {

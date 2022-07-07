@@ -1,15 +1,11 @@
-import { useState } from "react";
-import { Power, Settings, User } from "react-feather";
+import { Power } from "react-feather";
 import styled from "styled-components";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { useStateProvider } from "../utils/StateProvider";
 function MobileNavbar() {
   const [{ userInfo }] = useStateProvider();
-  const [open, setOpen] = useState(false);
-  const toggleSettings = () => {
-    setOpen((prevState) => !prevState);
-  };
+
   const logout = () => {
     localStorage.clear();
     window.location.hash = "";
@@ -22,7 +18,11 @@ function MobileNavbar() {
         <h1>Good Morning</h1>
       </div>
       <div className="row">
-        <Settings onClick={toggleSettings} />
+        <div>
+          <h4 className="space" onClick={logout}>
+            Logout <Power size={15} />
+          </h4>
+        </div>
         <div className="avatar">
           <Link to={userInfo?.userUr}>
             <CgProfile />
@@ -30,17 +30,6 @@ function MobileNavbar() {
           </Link>
         </div>
       </div>
-      {open && (
-        <div className="dropdown">
-          <p className="space">
-            Account <User size={15} />
-          </p>
-          <p>Profile</p>
-          <p className="space" onClick={logout}>
-            Logout <Power size={15} />
-          </p>
-        </div>
-      )}
     </MNavContainer>
   );
 }
@@ -60,6 +49,15 @@ const MNavContainer = styled.div`
     gap: 1rem;
     align-items: center;
     a {
+      color: white;
+    }
+    .space {
+      display: flex;
+      gap: 10px;
+      cursor: pointer;
+      color: #ccc;
+    }
+    .space:hover {
       color: white;
     }
     .avatar {

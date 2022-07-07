@@ -78,10 +78,10 @@ function Home() {
             <ChevronLeft />
           </Link>
         </div>
-        <div>
+        {/* <div>
           <HomeCard />
           <HomeCard />
-        </div>
+        </div> */}
         <div className="episodes">
           <div className="row ep_header">
             <h1>Featured Playlists</h1>

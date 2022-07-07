@@ -37,6 +37,10 @@ export default function Login() {
             alt="Login Logo"
           />
         </Fade>
+
+        <div className="caveat">
+          <p>song must be playing on your device to start</p>
+        </div>
         <Fade bottom>
           <button onClick={handleClick}>Connect Spotify</button>
         </Fade>
@@ -48,6 +52,9 @@ export default function Login() {
             alt="Login Logo"
           />
         </Fade>
+        <div className="caveat">
+          <p>song must be playing on your device to start</p>
+        </div>
         <Fade bottom>
           <button onClick={handleClick}>Connect Spotify</button>
         </Fade>
@@ -68,9 +75,17 @@ const Container = styled.div`
       justify-content: center;
       height: 100vh;
       width: 100vw;
-      gap: 5rem;
+      gap: 4rem;
       background-color: #000;
       color: #fff;
+    }
+    .caveat {
+      color: white;
+      text-transform: uppercase;
+      font-size: 10px;
+      border: 1px solid white;
+      padding: 0.5rem 1rem;
+      text-align: center;
     }
     img {
       width: 80%;
@@ -90,7 +105,7 @@ const Container = styled.div`
       background-color: white;
       color: #000;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 15px;
       transition: transform ease-in-out 200ms;
     }
   }
@@ -111,6 +126,14 @@ const Container = styled.div`
         width: 30%;
       }
 
+      .caveat {
+        color: black;
+        text-transform: uppercase;
+        font-size: 10px;
+        border: 1px solid black;
+        padding: 0.5rem 1rem;
+        text-align: center;
+      }
       button {
         width: 200px;
         padding: 1rem 0;
