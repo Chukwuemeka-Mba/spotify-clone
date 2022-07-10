@@ -41,7 +41,6 @@ export default function Body({ headerBackground }) {
     };
     getInitialPlaylist();
   }, [token, dispatch, selectedPlaylistId]);
-
   const msToMinutesAndSeconds = (ms) => {
     var minutes = Math.floor(ms / 60000);
     var seconds = ((ms % 60000) / 1000).toFixed(0);
@@ -58,7 +57,6 @@ export default function Body({ headerBackground }) {
     context_uri,
     track_number
   ) => {
-    console.log(track_number, context_uri);
     const response = await axios.put(
       `https://api.spotify.com/v1/me/player/play`,
       {

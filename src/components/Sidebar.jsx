@@ -57,7 +57,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   color: #b3b3b3;
-  height: 100%;
+  height: 100vh;
   .top__links {
     display: flex;
     flex-direction: column;

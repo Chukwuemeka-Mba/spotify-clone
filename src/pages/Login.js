@@ -5,7 +5,7 @@ export default function Login() {
   // website: https://emeka-spotify-clone.netlify.app/
   function handleClick() {
     const clientId = "aa7a8c8164934e9b851471ced881c98c";
-    const redirectUrl = "https://emeka-spotify-clone.netlify.app/";
+    const redirectUrl = "http://localhost:3000/";
     const apiUrl = "https://accounts.spotify.com/authorize";
     const scope = [
       "user-read-email",
@@ -25,7 +25,7 @@ export default function Login() {
 
     window.location.href = `${apiUrl}?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=${scope.join(
       " "
-    )}&response_type=token&show_dialog=true`;
+    )}&response_type=token&show_dialog=false`;
     localStorage.clear();
   }
   return (
@@ -39,7 +39,7 @@ export default function Login() {
         </Fade>
 
         <div className="caveat">
-          <p>song must be playing on your device to start</p>
+          <p>song must be playing in background to start</p>
         </div>
         <Fade bottom>
           <button onClick={handleClick}>Connect Spotify</button>
@@ -53,7 +53,7 @@ export default function Login() {
           />
         </Fade>
         <div className="caveat">
-          <p>song must be playing on your device to start</p>
+          <p>song must be playing in background to start</p>
         </div>
         <Fade bottom>
           <button onClick={handleClick}>Connect Spotify</button>

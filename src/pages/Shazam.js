@@ -1,11 +1,63 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import Fade from "react-reveal/Fade";
 import TopTracks from "../components/TopTracks";
+import { useStateProvider } from "../utils/StateProvider";
+
 // Components
 import MobileFooter from "../components/MobileFooter";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 function Shazam() {
+  const [{ token, audioFeatures }, dispatch] = useStateProvider();
+
+  let acousticnessIndex;
+  let danceabilityIndex;
+  let energyIndex;
+  let instrumentalnessIndex;
+  let livenessIndex;
+  let loudnessIndex;
+  let speechinessIndex;
+  let valenceIndex;
+  function getAudioFeatures() {
+    // console.log(audioFeatures.length);
+    audioFeatures.map(
+      ({
+        acousticness,
+        danceability,
+        duration_ms,
+        energy,
+        instrumentalness,
+        liveness,
+        loudness,
+        speechiness,
+        tempo,
+        valence,
+      }) => {
+        acousticnessIndex = (acousticness / 1) * 100;
+        danceabilityIndex = (danceability / 1) * 100;
+        energyIndex = (energy / 1) * 100;
+        instrumentalnessIndex = (instrumentalness / 1) * 100;
+        livenessIndex = (liveness / 1) * 100;
+        loudnessIndex = (loudness / 60) * -100;
+        speechinessIndex = (speechiness / 0.66) * 100;
+        valenceIndex = (valence / 1) * 100;
+
+        acousticnessIndex += acousticnessIndex;
+        danceabilityIndex += danceabilityIndex;
+        energyIndex += energyIndex;
+        instrumentalnessIndex += instrumentalnessIndex;
+        livenessIndex += livenessIndex;
+        loudnessIndex += loudnessIndex;
+        speechinessIndex += speechinessIndex;
+        valenceIndex += valenceIndex;
+
+        return energy;
+      }
+    );
+    console.log(acousticnessIndex);
+  }
+
   return (
     <ShazamContainer>
       <div></div>
@@ -14,7 +66,6 @@ function Shazam() {
           <Fade top>
             <h1>Here are your favorite tracks.</h1>
             <div className="text">
-              {/* <p>Want to see something cool?</p> */}
               <button className="shaz">SHAZAM</button>
             </div>
           </Fade>
@@ -23,6 +74,7 @@ function Shazam() {
           <TopTracks />
         </div>
         <div>
+          x
           <MobileFooter />
         </div>
       </div>
@@ -34,8 +86,10 @@ function Shazam() {
           <div className="title__text">
             <Fade top>
               <h1>Here are your favorite tracks.</h1>
-              <div className="text">
-                <button className="shaz">SHAZAM</button>
+              <div className="text" onClick={() => getAudioFeatures}>
+                <button className="shaz" onClick={getAudioFeatures()}>
+                  SHAZAM
+                </button>
               </div>
             </Fade>
           </div>

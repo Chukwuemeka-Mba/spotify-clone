@@ -18,8 +18,9 @@ export const initialState = {
   isMobile: false,
 };
 // 2tDNKSrevZC6xKARQp0efQ
-
+let audios = [];
 const reducer = (state, action) => {
+  if (action.audioFeatures !== undefined) audios.push(action.audioFeatures);
   switch (action.type) {
     case reducerCases.SET_TOKEN: {
       return {
@@ -78,7 +79,7 @@ const reducer = (state, action) => {
     case reducerCases.SET_AUDIO_FEATURES: {
       return {
         ...state,
-        audioFeatures: action.audioFeatures,
+        audioFeatures: audios,
       };
     }
     case reducerCases.SET_PLAYLIST: {

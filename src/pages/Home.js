@@ -78,10 +78,6 @@ function Home() {
             <ChevronLeft />
           </Link>
         </div>
-        {/* <div>
-          <HomeCard />
-          <HomeCard />
-        </div> */}
         <div className="episodes">
           <div className="row ep_header">
             <h1>Featured Playlists</h1>
@@ -152,10 +148,6 @@ function Home() {
           <div className="body_cont" ref={bodyRef} onScroll={bodyScrolled}>
             <Navbar navBackground={navBackground} />
             <div className="body__contents">
-              <div>
-                <HomeCard />
-                <HomeCard />
-              </div>
               <div className="episodes">
                 <div className="row ep_header">
                   <h1>Featured Playlists</h1>

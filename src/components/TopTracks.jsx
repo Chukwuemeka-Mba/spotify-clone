@@ -7,7 +7,7 @@ import axios from "axios";
 import TopTrack from "./cards/TopTrack";
 
 function TopTracks() {
-  const [{ token, topTracks }, dispatch] = useStateProvider();
+  const [{ token, topTracks, audioFeatures }, dispatch] = useStateProvider();
   useEffect(() => {
     const getUserTopTracks = async () => {
       const response = await axios.get(

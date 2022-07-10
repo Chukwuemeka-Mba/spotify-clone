@@ -19,8 +19,10 @@ const Container = styled.div`
   .main {
     background-color: #181818;
     color: white;
-    height: 100%;
+    height: 9vh;
     width: 100%;
+    position: fixed;
+    bottom: 0;
     border-top: 1px solid #282828;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;

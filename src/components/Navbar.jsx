@@ -1,20 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { FaSearch } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { useStateProvider } from "../utils/StateProvider";
-import { Settings, User, Power } from "react-feather";
+import { Power } from "react-feather";
 
 export default function Navbar({ navBackground }) {
   const [{ userInfo }] = useStateProvider();
-  const [open, setOpen] = useState(false);
-  const toggleSettings = () => {
-    setOpen((prevState) => !prevState);
-  };
   const logout = () => {
     localStorage.clear();
     window.location.hash = "";
-    window.location.pathname = "/";
+    window.location.pathname = "";
     window.location.reload();
   };
   return (
@@ -25,7 +21,11 @@ export default function Navbar({ navBackground }) {
       </div>
       <div className="right row">
         <div className="settings">
-          <Settings onClick={toggleSettings} />
+          <div>
+            <h4 className="space" onClick={logout}>
+              Logout <Power size={15} />
+            </h4>
+          </div>
         </div>
         <div className="avatar">
           <a href={userInfo?.userUrl}>
@@ -34,17 +34,6 @@ export default function Navbar({ navBackground }) {
           </a>
         </div>
       </div>
-      {open && (
-        <div className="dropdown">
-          <p className="space">
-            Account <User size={15} />
-          </p>
-          <p>Profile</p>
-          <p className="space" onClick={logout}>
-            Logout <Power size={15} />
-          </p>
-        </div>
-      )}
     </NavContainer>
   );
 }
@@ -57,6 +46,7 @@ const NavContainer = styled.div`
   height: 17vh;
   position: sticky;
   top: 0;
+  z-index: 2;
   transition: 0.3s ease-in-out;
   background-color: ${({ navBackground }) =>
     navBackground ? "rgba(0,0,0,0.7)" : "none"};
@@ -104,6 +94,16 @@ const NavContainer = styled.div`
       }
     }
     .settings {
+      color: white;
+    }
+
+    .space {
+      display: flex;
+      gap: 10px;
+      cursor: pointer;
+      color: #ccc;
+    }
+    .space:hover {
       color: white;
     }
   }

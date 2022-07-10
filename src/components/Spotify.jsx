@@ -86,22 +86,24 @@ const SpotifyContainer = styled.div`
     .desktop {
       display: grid;
       grid-template-columns: 15% 85%;
-      grid-template-rows: 75% 25%;
+      grid-template-rows: 85% 15%;
       grid-template-areas:
         "side body"
         "foot foot";
       .sidebar {
         grid-area: side;
+        height: 100vh;
       }
       .body {
         grid-area: body;
+        overflow-y: scroll;
         height: 92vh;
         background: linear-gradient(transparent, rgba(0, 0, 0, 1));
         background-color: rgb(32, 87, 100);
         .body_cont {
           height: 100%;
           width: 100%;
-          overflow: auto;
+          overflow: scroll;
           &::-webkit-scrollbar {
             width: 0.7rem;
             max-height: 2rem;
@@ -109,55 +111,15 @@ const SpotifyContainer = styled.div`
               background-color: rgba(255, 255, 255, 0.6);
             }
           }
-        }
-
-        .body__contents {
-          .episodes {
-            padding: 1rem;
-            .ep_header {
-              display: flex;
-              justify-content: space-between;
-              padding: 1rem;
-              color: #ccc;
-              h1 {
-                font-size: 23px;
-              }
-              p {
-                font-size: 12px;
-                cursor: pointer;
-              }
-            }
-            .cards {
-              overflow-x: scroll;
-              a {
-                text-decoration: none;
-              }
-            }
+          .body__contents {
           }
         }
       }
       .footer {
+        position: fixed;
+        bottom: 0;
         grid-area: foot;
-      }
-      .spotify__body {
-        display: grid;
-        grid-template-columns: 15vw 85vw;
-        height: 100%;
         width: 100%;
-        background: linear-gradient(transparent, rgba(0, 0, 0, 1));
-        background-color: rgb(32, 87, 100);
-        .body {
-          height: 100%;
-          width: 100%;
-          overflow: auto;
-          &::-webkit-scrollbar {
-            width: 0.7rem;
-            max-height: 2rem;
-            &-thumb {
-              background-color: rgba(255, 255, 255, 0.6);
-            }
-          }
-        }
       }
     }
   }
