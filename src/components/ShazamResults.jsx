@@ -138,9 +138,6 @@ const ResultsContainer = styled.div`
     color: transparent;
     animation: text_revealing 0s ease forwards;
     display: inline-block;
-    strong {
-      color: #71b3df;
-    }
   }
   .container .col-left p:nth-child(1) {
     animation-delay: 1s;
