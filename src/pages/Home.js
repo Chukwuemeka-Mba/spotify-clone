@@ -15,7 +15,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 function Home() {
   const [{ userInfo }] = useStateProvider();
-  const [{ token, playlists2, categories }, dispatch] = useStateProvider();
+  const [{ token, playlists2, categories, playlists }, dispatch] =
+    useStateProvider();
   const bodyRef = useRef();
   const [navBackground, setNavBackground] = useState(false);
   const bodyScrolled = () => {
@@ -110,11 +111,11 @@ function Home() {
         </div>
         <div className="episodes">
           <div className="row ep_header">
-            <h1>Recently Played</h1>
+            <h1>Your Playlists</h1>
             <p>SEE ALL</p>
           </div>
           <div className="row cards">
-            {playlists2.map(({ name, id, description, images }) => {
+            {playlists.map(({ name, id, description, images }) => {
               return (
                 <Link key={id} to="/" onClick={() => changeCurrentPlaylist(id)}>
                   <EpisodeCard title={name} image={images} text={description} />
@@ -146,7 +147,6 @@ function Home() {
         </div>
         <div className="body">
           <div className="body_cont" ref={bodyRef} onScroll={bodyScrolled}>
-            <Navbar navBackground={navBackground} />
             <div className="body__contents">
               <div className="episodes">
                 <div className="row ep_header">
@@ -196,11 +196,11 @@ function Home() {
               </div>
               <div className="episodes">
                 <div className="row ep_header">
-                  <h1>Recently Played</h1>
+                  <h1>Your Playlists</h1>
                   <p>SEE ALL</p>
                 </div>
                 <div className="row cards">
-                  {playlists2.map(({ name, id, description, images }) => {
+                  {playlists.map(({ name, id, description, images }) => {
                     return (
                       <Link
                         key={id}

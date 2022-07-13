@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import Fade from "react-reveal/Fade";
 import TopTracks from "../components/TopTracks";
@@ -8,19 +8,34 @@ import { useStateProvider } from "../utils/StateProvider";
 import MobileFooter from "../components/MobileFooter";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
+import ShazamResults from "../components/ShazamResults";
+import { reducerCases } from "../utils/Constants";
+import { Link } from "react-router-dom";
 function Shazam() {
-  const [{ token, audioFeatures }, dispatch] = useStateProvider();
+  const [{ token, audioFeatures, shazamResults }, dispatch] =
+    useStateProvider();
+  const [shazam, setShazam] = useState(false);
 
-  let acousticnessIndex;
-  let danceabilityIndex;
-  let energyIndex;
-  let instrumentalnessIndex;
-  let livenessIndex;
-  let loudnessIndex;
-  let speechinessIndex;
-  let valenceIndex;
+  const toggleShazam = () => {
+    setShazam((prevState) => !prevState);
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    window.location.hash = "";
+    window.location.pathname = "";
+    window.location.reload();
+  };
   function getAudioFeatures() {
-    // console.log(audioFeatures.length);
+    toggleShazam();
+    let acousticnessIndex = 0;
+    let danceabilityIndex = 0;
+    let energyIndex = 0;
+    let instrumentalnessIndex = 0;
+    let livenessIndex = 0;
+    let loudnessIndex = 0;
+    let speechinessIndex;
+    let valenceIndex;
     audioFeatures.map(
       ({
         acousticness,
@@ -34,47 +49,58 @@ function Shazam() {
         tempo,
         valence,
       }) => {
-        acousticnessIndex = (acousticness / 1) * 100;
-        danceabilityIndex = (danceability / 1) * 100;
-        energyIndex = (energy / 1) * 100;
-        instrumentalnessIndex = (instrumentalness / 1) * 100;
-        livenessIndex = (liveness / 1) * 100;
-        loudnessIndex = (loudness / 60) * -100;
-        speechinessIndex = (speechiness / 0.66) * 100;
-        valenceIndex = (valence / 1) * 100;
+        acousticness = (acousticness / 1) * 100;
+        danceability = (danceability / 1) * 100;
+        energy = (energy / 1) * 100;
+        instrumentalness = (instrumentalness / 1) * 100;
+        liveness = (liveness / 1) * 100;
+        loudness = (loudness / 60) * -100;
+        speechiness = (speechiness / 0.66) * 100;
+        valence = (valence / 1) * 100;
 
-        acousticnessIndex += acousticnessIndex;
-        danceabilityIndex += danceabilityIndex;
-        energyIndex += energyIndex;
-        instrumentalnessIndex += instrumentalnessIndex;
-        livenessIndex += livenessIndex;
+        acousticnessIndex += acousticness;
+        danceabilityIndex += danceability;
+        energyIndex += energy;
+        instrumentalnessIndex += instrumentalness;
+        livenessIndex += liveness;
         loudnessIndex += loudnessIndex;
-        speechinessIndex += speechinessIndex;
-        valenceIndex += valenceIndex;
-
-        return energy;
+        speechinessIndex += speechiness;
+        valenceIndex += valence;
       }
     );
-    console.log(acousticnessIndex);
+    let shazamResults = {
+      acousticnessIndex: acousticnessIndex,
+      danceabilityIndex: danceabilityIndex,
+      energyIndex: energyIndex,
+      instrumentalnessIndex: instrumentalnessIndex,
+      livenessIndex: livenessIndex,
+      speechinessIndex: speechinessIndex,
+      valenceIndex: valenceIndex,
+    };
+    dispatch({ type: reducerCases.SET_SHAZAM_RESULTS, shazamResults });
+    return shazamResults;
   }
-
   return (
     <ShazamContainer>
-      <div></div>
       <div className="mobile">
+        <div className="nav">
+          <Link to="/">Go back home</Link>
+        </div>
         <div className="title__text">
           <Fade top>
-            <h1>Here are your favorite tracks.</h1>
+            <h1>{!shazam && "Here are your favorite tracks."}</h1>
             <div className="text">
-              <button className="shaz">SHAZAM</button>
+              <button className="shaz" onClick={getAudioFeatures}>
+                {!shazam ? "SHAZAM" : "BACK TO FAVORITES"}
+              </button>
             </div>
           </Fade>
         </div>
         <div>
-          <TopTracks />
+          {shazam ? <ShazamResults shazamResults={shazamResults} /> : ""}
+          {!shazam ? <TopTracks /> : ""}
         </div>
         <div>
-          x
           <MobileFooter />
         </div>
       </div>
@@ -85,15 +111,18 @@ function Shazam() {
         <div className="body">
           <div className="title__text">
             <Fade top>
-              <h1>Here are your favorite tracks.</h1>
-              <div className="text" onClick={() => getAudioFeatures}>
-                <button className="shaz" onClick={getAudioFeatures()}>
-                  SHAZAM
+              <h1>{!shazam && "Here are your favorite tracks."}</h1>
+              <div className="text">
+                <button className="shaz" onClick={getAudioFeatures}>
+                  {!shazam ? "SHAZAM" : "BACK TO FAVORITES"}
                 </button>
               </div>
             </Fade>
           </div>
-          <TopTracks />
+          <div className="shazam_results">
+            {shazam ? <ShazamResults shazamResults={shazamResults} /> : ""}
+            {!shazam ? <TopTracks /> : ""}
+          </div>
         </div>
         <div className="footer">
           <Footer />
@@ -113,6 +142,25 @@ const ShazamContainer = styled.div`
       height: 100%;
       background: linear-gradient(transparent, rgba(1, 1, 1));
       background-color: rgb(32, 47, 50);
+      .nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem;
+        width: 100%;
+        gap: 1rem;
+        a {
+          text-decoration: none;
+          color: white;
+        }
+        a:hover {
+          text-decoration: underline 1px #fff;
+        }
+        p {
+          cursor: pointer;
+          color: #ccc;
+        }
+      }
       .title__text {
         display: flex;
         flex-direction: column;
@@ -164,14 +212,30 @@ const ShazamContainer = styled.div`
       .sidebar {
         grid-area: side;
       }
+      .nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem;
+        width: 100%;
+        gap: 1rem;
+        a {
+          text-decoration: none;
+          color: white;
+        }
+        a:hover {
+          text-decoration: underline 1px #fff;
+        }
+        p {
+          cursor: pointer;
+          color: #ccc;
+        }
+      }
       .body {
         grid-area: body;
-
         display: flex;
         flex-direction: column;
         justify-content: center;
-        height: 92vh;
-        overflow-y: scroll;
         background: linear-gradient(transparent, rgba(1, 1, 1));
         background-color: rgb(32, 47, 50);
         .title__text {
@@ -209,8 +273,11 @@ const ShazamContainer = styled.div`
             }
           }
         }
+        .shazam_results {
+          height: 82vh;
+          overflow-y: scroll;
+        }
       }
-
       .footer {
         grid-area: foot;
       }

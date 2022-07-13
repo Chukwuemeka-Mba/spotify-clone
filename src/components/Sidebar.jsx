@@ -9,7 +9,7 @@ export default function Sidebar() {
   return (
     <Container>
       <div className="top__links">
-        <Link to="/home" className="logo">
+        <Link to="/" className="logo">
           <img
             src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_White.png"
             alt="Login Logo"

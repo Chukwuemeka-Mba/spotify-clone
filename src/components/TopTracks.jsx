@@ -57,6 +57,7 @@ const TopContainer = styled.div`
     gap: 1rem;
     padding: 3rem 1rem;
     margin-bottom: 9rem;
+    overflow-y: scroll;
     .track {
       display: flex;
       flex-direction: row;

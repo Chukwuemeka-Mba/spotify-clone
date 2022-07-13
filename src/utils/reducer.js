@@ -11,6 +11,7 @@ export const initialState = {
   recentTracks: [],
   topTracks: [],
   audioFeatures: [],
+  shazamResults: null,
   selectedPlaylist: null,
   selectedPlaylistId: "2tDNKSrevZC6xKARQp0efQ",
   currentTrack: null,
@@ -62,6 +63,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         artists: action.artists,
+      };
+    }
+    case reducerCases.SET_SHAZAM_RESULTS: {
+      return {
+        ...state,
+        shazamResults: action.shazamResults,
       };
     }
     case reducerCases.SET_RECENT_TRACKS: {
