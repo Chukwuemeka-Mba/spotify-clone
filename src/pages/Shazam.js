@@ -211,6 +211,7 @@ const ShazamContainer = styled.div`
         "foot foot";
       .sidebar {
         grid-area: side;
+        height: 82vh;
       }
       .nav {
         display: flex;
@@ -238,6 +239,7 @@ const ShazamContainer = styled.div`
         justify-content: center;
         background: linear-gradient(transparent, rgba(1, 1, 1));
         background-color: rgb(32, 47, 50);
+        height: 100vh;
         .title__text {
           display: flex;
           flex-direction: column;
